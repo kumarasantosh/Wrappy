@@ -48,13 +48,14 @@ export default function LaunchingSoon() {
         </div>
 
         {/* Heading */}
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 tracking-tight">
+        <h1 className="text-4xl sm:text-5xl md:text-[55px] font-bold mb-4 sm:mb-6 tracking-tight">
           Launching Soon
         </h1>
 
         {/* Subheading */}
         <p className="text-lg sm:text-xl md:text-2xl text-zinc-400 mb-8 sm:mb-12 max-w-2xl mx-auto px-4">
-          Something extraordinary is on its way. Get ready to unwrap .
+          Something extraordinary is on its way. Get ready to unwrap Your taste
+          buds.
         </p>
 
         {/* Email Signup */}
