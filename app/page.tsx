@@ -40,22 +40,11 @@ export default function LaunchingSoon() {
       >
         {/* Logo */}
         <div className="mb-8 sm:mb-12">
-          <svg
-            viewBox="0 0 400 100"
-            className="w-[360px] sm:w-[500px] md:w-[700px] lg:w-[850px] mx-auto h-auto"
-          >
-            <text
-              x="50%"
-              y="50%"
-              textAnchor="middle"
-              dominantBaseline="middle"
-              fontSize="48"
-              fontWeight="bold"
-              fill="white"
-            >
-              Wrappy
-            </text>
-          </svg>
+          <img
+            src="/wrappy-logo.png"
+            alt="Wrappy"
+            className="w-[280px] sm:w-[380px] md:w-[500px] lg:w-[600px] mx-auto h-auto"
+          />
         </div>
 
         {/* Heading */}
@@ -65,8 +54,7 @@ export default function LaunchingSoon() {
 
         {/* Subheading */}
         <p className="text-lg sm:text-xl md:text-2xl text-zinc-400 mb-8 sm:mb-12 max-w-2xl mx-auto px-4">
-          Something extraordinary is on its way. Get ready to unwrap Your taste
-          buds.
+          Something extraordinary is on its way. Get ready to unwrap .
         </p>
 
         {/* Email Signup */}
