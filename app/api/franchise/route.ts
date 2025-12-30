@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     const { data, error } = await resend.emails.send({
       from: 'Wrappy Franchise <onboarding@resend.dev>', // Update this with your verified domain
       to: process.env.FRANCHISE_EMAIL || 'franchise@wrappy.com', // Update with your email
-      replyTo: email,
+      reply_to: email,
       subject: `New Franchise Inquiry from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
