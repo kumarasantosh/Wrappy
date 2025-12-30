@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 
 export default function Navigation() {
-  const navRef = useRef<HTMLNavElement>(null)
+  const navRef = useRef<HTMLElement>(null)
   const menuRef = useRef<HTMLDivElement>(null)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
