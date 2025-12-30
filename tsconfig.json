@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
+<<<<<<< HEAD
     "target": "ES2017",
+=======
+    "target": "ES2020",
+>>>>>>> 57c897d (Initial Wrappy website with GSAP animations)
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -11,7 +15,11 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
+<<<<<<< HEAD
     "jsx": "react-jsx",
+=======
+    "jsx": "preserve",
+>>>>>>> 57c897d (Initial Wrappy website with GSAP animations)
     "incremental": true,
     "plugins": [
       {
@@ -22,6 +30,7 @@
       "@/*": ["./*"]
     }
   },
+<<<<<<< HEAD
   "include": [
     "next-env.d.ts",
     "**/*.ts",
@@ -32,3 +41,9 @@
   ],
   "exclude": ["node_modules"]
 }
+=======
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+
+>>>>>>> 57c897d (Initial Wrappy website with GSAP animations)
