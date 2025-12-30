@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @import "tailwindcss";
 @tailwind base;
 @tailwind components;
@@ -125,4 +124,3 @@ html.lenis body {
   display: none; /* Chrome, Safari, Opera */
 }
 
->>>>>>> 57c897d (Initial Wrappy website with GSAP animations)
