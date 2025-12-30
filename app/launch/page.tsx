@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -15,7 +14,6 @@ export default function LaunchPage() {
   const contentRef = useRef<HTMLDivElement>(null)
   const ctaRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<HTMLDivElement>(null)
-  const footerRef = useRef<HTMLDivElement>(null)
   const logoRef1 = useRef<HTMLImageElement>(null)
   const logoRef2 = useRef<HTMLImageElement>(null)
   const logoRef3 = useRef<HTMLImageElement>(null)
@@ -235,23 +233,6 @@ export default function LaunchPage() {
         )
       }
 
-      // Footer animation
-      if (footerRef.current) {
-        gsap.fromTo(
-          footerRef.current,
-          { opacity: 0, y: 30 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: footerRef.current,
-              start: 'top 85%',
-            },
-          }
-        )
-      }
     }, containerRef)
 
     return () => ctx.revert()
@@ -278,7 +259,7 @@ export default function LaunchPage() {
         <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-16 md:py-24">
           <div className="mb-8">
             <div className="inline-block px-4 py-2 border-2 border-black text-sm font-bold tracking-widest uppercase mb-8">
-              Our Signature Collection
+            Try Our Signature Collection
             </div>
           </div>
           
@@ -426,7 +407,7 @@ export default function LaunchPage() {
 
         {/* Footer Section */}
         <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
-          <div ref={footerRef} className="space-y-6">
+          <div className="space-y-6">
             <p className="text-3xl md:text-4xl font-black text-black">
               Can't wait to see you!
             </p>
@@ -444,7 +425,6 @@ export default function LaunchPage() {
           </div>
         </section>
       </div>
-      <Footer />
     </main>
   )
 }
