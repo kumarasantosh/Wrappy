@@ -60,13 +60,7 @@ export default function Navigation() {
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
               <a href="/#wraps" className="text-wrappy-black hover:text-wrappy-red transition-colors">
-                Wraps
-              </a>
-              <a href="/#fries" className="text-wrappy-black hover:text-wrappy-red transition-colors">
-                Fries
-              </a>
-              <a href="/#shakes" className="text-wrappy-black hover:text-wrappy-red transition-colors">
-                Shakes
+                Menu
               </a>
               <a href="/franchise" className="text-wrappy-black hover:text-wrappy-red transition-colors">
                 Franchise
@@ -115,21 +109,7 @@ export default function Navigation() {
             className="menu-item text-4xl font-bold text-wrappy-cream hover:text-wrappy-red transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
-            Wraps
-          </a>
-          <a
-            href="/#fries"
-            className="menu-item text-4xl font-bold text-wrappy-cream hover:text-wrappy-red transition-colors"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Fries
-          </a>
-          <a
-            href="/#shakes"
-            className="menu-item text-4xl font-bold text-wrappy-cream hover:text-wrappy-red transition-colors"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Shakes
+            Menu
           </a>
           <a
             href="/franchise"

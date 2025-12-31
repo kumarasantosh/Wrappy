@@ -181,14 +181,20 @@ export default function SignatureWraps() {
         {/* Skip to Next Section Button */}
         <button
           onClick={() => {
-            const nextSection = document.getElementById('fries')
+            const nextSection = document.getElementById('shakes')
             if (nextSection) {
-              nextSection.scrollIntoView({ behavior: 'smooth' })
+              const offset = 100 // Offset for fixed navigation
+              const elementPosition = nextSection.getBoundingClientRect().top
+              const offsetPosition = elementPosition + window.pageYOffset - offset
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+              })
             }
           }}
           className="absolute bottom-4 right-8 md:bottom-6 md:right-12 z-50 bg-wrappy-red hover:bg-wrappy-orange text-wrappy-cream px-6 py-3 rounded-full font-bold text-sm md:text-base transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-xl hover:shadow-wrappy-red/50 flex items-center gap-2 group"
         >
-          <span>Skip to Fries & Sides</span>
+          <span>Skip to Shakes</span>
           <svg 
             className="w-5 h-5 transform group-hover:translate-y-1 transition-transform" 
             fill="none" 

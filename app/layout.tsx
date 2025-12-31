@@ -13,8 +13,8 @@ export const metadata: Metadata = {
     default: 'Wrappy - Wrap It. Bite It. Love It. | Fresh Wraps & Fries in Hyderabad',
     template: '%s | Wrappy'
   },
-  description: 'Fresh wraps, crispy fries, thick shakes & chill drinks in Hyderabad. Wrappy - where street food meets bold flavour. Visit us at Shop 5A, Plot 192, Addagutta Society, Kukatpally.',
-  keywords: ['wrappy', 'wraps', 'fresh wraps', 'fries', 'hyderabad food', 'street food', 'kukatpally', 'food delivery', 'restaurant hyderabad', 'wraps hyderabad', 'fries hyderabad', 'wrappy restaurant'],
+  description: 'Fresh wraps, crispy fries, thick shakes & chill drinks in Hyderabad. Wrappy - where street food meets bold flavour. Visit us at Shop 5A, Plot 192, Addagutta Society, Kukatpally, Hyderabad. Call 7799602222 to order now!',
+  keywords: ['wrappy', 'wraps', 'fresh wraps', 'fries', 'hyderabad food', 'street food', 'kukatpally', 'food delivery', 'restaurant hyderabad', 'wraps hyderabad', 'fries hyderabad', 'wrappy restaurant', 'thickshakes', 'mojitos', 'desserts', 'ufo wraps', 'wrappy kukatpally', 'best wraps hyderabad', 'chicken wraps', 'veg wraps'],
   authors: [{ name: 'Wrappy' }],
   creator: 'Wrappy',
   publisher: 'Wrappy',
@@ -73,7 +73,7 @@ export default function RootLayout({
     "name": "Wrappy",
     "description": "Fresh wraps, crispy fries, thick shakes & chill drinks. Wrappy - where street food meets bold flavour.",
     "url": "https://wrappy.com",
-    "telephone": "+1-800-WRAPPY",
+    "telephone": "+917799602222",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Shop 5A, Plot 192, Addagutta Society, Jal Vayu Vihar Road",
@@ -92,7 +92,10 @@ export default function RootLayout({
     "image": "https://wrappy.com/images/logo.png",
     "sameAs": [
       "https://instagram.com/heywrappy"
-    ]
+    ],
+    "menu": "https://wrappy.com/#wraps",
+    "acceptsReservations": false,
+    "servesCuisine": "Street Food, Wraps, Fast Food, Thickshakes, Mojitos, Desserts"
   }
 
   return (

@@ -1,34 +1,49 @@
-'use client'
+import type { Metadata } from 'next'
+import HomeClient from './home-client'
 
-import { useState } from 'react'
-import Loader from '@/components/Loader'
-import Navigation from '@/components/Navigation'
-import Hero from '@/components/Hero'
-import SignatureWraps from '@/components/SignatureWraps'
-import FriesAndSides from '@/components/FriesAndSides'
-import ShakesAndDesserts from '@/components/ShakesAndDesserts'
-import BrandStory from '@/components/BrandStory'
-import FinalCTA from '@/components/FinalCTA'
-import Footer from '@/components/Footer'
+export const metadata: Metadata = {
+  title: 'Home - Fresh Wraps & Fries in Hyderabad | Wrappy',
+  description: 'Fresh wraps, crispy fries, thick shakes & chill drinks in Hyderabad. Wrappy - where street food meets bold flavour. Visit us at Shop 5A, Plot 192, Addagutta Society, Kukatpally, Hyderabad. Call 7799602222 to order now!',
+  keywords: ['wrappy', 'wraps', 'fresh wraps', 'fries', 'hyderabad food', 'street food', 'kukatpally', 'food delivery', 'restaurant hyderabad', 'wraps hyderabad', 'fries hyderabad', 'wrappy restaurant', 'thickshakes', 'mojitos', 'desserts', 'ufo wraps', 'wrappy kukatpally', 'best wraps hyderabad'],
+  openGraph: {
+    title: 'Wrappy - Fresh Wraps & Fries in Hyderabad',
+    description: 'Fresh wraps, crispy fries, thick shakes & chill drinks. Wrappy - where street food meets bold flavour. Located in Kukatpally, Hyderabad.',
+    url: 'https://wrappy.com',
+    type: 'website',
+    locale: 'en_IN',
+    siteName: 'Wrappy',
+    images: [
+      {
+        url: '/images/logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'Wrappy - Fresh Wraps & Fries',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Wrappy - Fresh Wraps & Fries in Hyderabad',
+    description: 'Fresh wraps, crispy fries, thick shakes & chill drinks. Wrappy - where street food meets bold flavour.',
+    images: ['/images/logo.png'],
+    creator: '@heywrappy',
+  },
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+}
 
 export default function Home() {
-  const [loaderComplete, setLoaderComplete] = useState(false)
-
-  return (
-    <main className="relative">
-      {!loaderComplete && <Loader onComplete={() => setLoaderComplete(true)} />}
-      {loaderComplete && (
-        <>
-          <Navigation />
-          <Hero />
-          <SignatureWraps />
-          <FriesAndSides />
-        <ShakesAndDesserts />
-        <BrandStory />
-          <FinalCTA />
-          <Footer />
-        </>
-      )}
-    </main>
-  )
+  return <HomeClient />
 }

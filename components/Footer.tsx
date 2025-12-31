@@ -104,7 +104,9 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="#"
+                href="https://instagram.com/heywrappy"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-8 h-8 border-2 border-black flex items-center justify-center hover:bg-wrappy-red hover:border-wrappy-red transition-colors"
                 aria-label="Instagram"
               >
@@ -157,12 +159,6 @@ export default function Footer() {
                 className="block text-gray-600 hover:text-wrappy-red transition-colors text-sm"
               >
                 Signature Wraps
-              </Link>
-              <Link
-                href="/#fries"
-                className="block text-gray-600 hover:text-wrappy-red transition-colors text-sm"
-              >
-                Fries & Sides
               </Link>
               <Link
                 href="/#shakes"
@@ -242,19 +238,10 @@ export default function Footer() {
               <div>
                 <p className="text-sm font-bold text-black mb-1">Phone</p>
                 <a
-                  href="tel:+1800WRAPPY"
+                  href="tel:+917799602222"
                   className="text-gray-600 hover:text-wrappy-red transition-colors text-sm"
                 >
-                  1-800-WRAPPY
-                </a>
-              </div>
-              <div>
-                <p className="text-sm font-bold text-black mb-1">Franchise</p>
-                <a
-                  href="mailto:franchise@wrappy.com"
-                  className="text-gray-600 hover:text-wrappy-red transition-colors text-sm"
-                >
-                  franchise@wrappy.com
+                  7799602222
                 </a>
               </div>
               <div className="pt-4">
@@ -270,7 +257,9 @@ export default function Footer() {
                     </svg>
                   </a>
                   <a
-                    href="#"
+                    href="https://instagram.com/heywrappy"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-10 h-10 border-2 border-black flex items-center justify-center hover:bg-wrappy-red hover:border-wrappy-red transition-colors"
                     aria-label="Instagram"
                   >
