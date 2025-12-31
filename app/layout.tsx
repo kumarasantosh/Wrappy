@@ -87,15 +87,14 @@ export default function RootLayout({
       "latitude": "17.3850",
       "longitude": "78.4867"
     },
-    "servesCuisine": "Street Food, Wraps, Fast Food",
+    "servesCuisine": "Street Food, Wraps, Fast Food, Thickshakes, Mojitos, Desserts",
     "priceRange": "$$",
     "image": "https://wrappy.com/images/logo.png",
     "sameAs": [
       "https://instagram.com/heywrappy"
     ],
     "menu": "https://wrappy.com/#wraps",
-    "acceptsReservations": false,
-    "servesCuisine": "Street Food, Wraps, Fast Food, Thickshakes, Mojitos, Desserts"
+    "acceptsReservations": false
   }
 
   return (
