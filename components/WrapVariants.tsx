@@ -50,16 +50,6 @@ const menuItems = {
     { id: 32, name: 'Grilled Pineapple', vegetarian: true, vegan: true, ingredients: 'Grilled pineapple mojito with mint and lime.' },
     { id: 33, name: 'Watermelon', vegetarian: true, vegan: true, ingredients: 'Fresh watermelon mojito with mint and lemon.' },
   ],
-  Desserts: [
-    { id: 34, name: 'Butterscotch Banana', vegetarian: true, vegan: false, ingredients: 'Creamy butterscotch with fresh banana dessert.' },
-    { id: 35, name: 'Oreo', vegetarian: true, vegan: false, ingredients: 'Oreo cookie dessert with creamy base.' },
-    { id: 36, name: 'Hard Rock Coffee', vegetarian: true, vegan: false, ingredients: 'Rich coffee flavored dessert.' },
-    { id: 37, name: 'KitKat', vegetarian: true, vegan: false, ingredients: 'KitKat chocolate dessert.' },
-    { id: 38, name: 'Protein', vegetarian: true, vegan: false, ingredients: 'High protein dessert option.' },
-    { id: 39, name: 'Belgian Chocolate', vegetarian: true, vegan: false, ingredients: 'Rich Belgian chocolate dessert.' },
-    { id: 40, name: 'Nutella', vegetarian: true, vegan: false, ingredients: 'Nutella hazelnut dessert.' },
-    { id: 41, name: 'Nutella Ice Cream', vegetarian: true, vegan: false, ingredients: 'Creamy Nutella ice cream.' },
-  ],
 }
 
 const categories = [
@@ -68,8 +58,60 @@ const categories = [
   { name: 'UFO', icon: '🛸', href: '/#ufo' },
   { name: 'Thickshakes', icon: '🥤', href: '/#thickshakes' },
   { name: 'Mojitos', icon: '🍹', href: '/#mojitos' },
-  { name: 'Desserts', icon: '🍰', href: '/#desserts' },
 ]
+
+// Function to get the image path for a specific menu item
+const getItemImage = (category: keyof typeof menuItems, itemName: string): string => {
+  // Category-specific image mappings
+  const categoryMaps: Record<keyof typeof menuItems, Record<string, string>> = {
+    Wraps: {
+      'Classic Veggie': '/Wraps/Classic Veggie_wrap.png',
+      'Butter Garlic Mushroom': '/Wraps/Butter Garlic Mushroom_wrap.png',
+      'Crispy Paneer': '/Wraps/Crispy Paneer_wrap.png',
+      'Cheesy Paneer': '/Wraps/Cheesy Paneer_wrap.png',
+      'Crispy Chicken': '/Wraps/Crispy Chicken_wrap.png',
+      'Chilli Chicken': '/Wraps/Chilli Chicken_wrap.png',
+      'Smoky Tandoori Chicken': '/Wraps/Smoky Tandoori Chicken_wrap.png',
+      'Cheesy Mexican Chicken': '/Wraps/Cheesy Mexican Chicken_wrap.png',
+      'Fully Loaded Chicken Wrap': '/Wraps/Fully Loaded Chicken Wrap_wrap.png',
+    },
+    Fries: {
+      'Classic Crispy Fries': '/Fries/Classic Crispy Fries.png',
+      'Peri Peri Fries': '/Fries/Peri Peri Fries.png',
+      'Signature Mixed Fries': '/Fries/Signature Mixed Fries.png',
+      'Golden Chicken Nuggets': '/Fries/Golden Chicken Nuggets.png',
+      'Crispy Chicken Strips': '/Fries/Crispy Chicken Fries.png',
+      'Chicken-Loaded Crispy Fries': '/Fries/Chicken Loaded Crispy Fries.png',
+      'Cheesy Loaded Fries': '/Fries/Cheesy Loaded Fries.png',
+    },
+    UFO: {
+      'Crispy Veg': '/UFO/Crispy Veg_UFO.png',
+      'Paneer / Mushroom': '/UFO/Paneer_UFO.png',
+      'Chicken': '/UFO/Chicken_UFO.png',
+      'Zinger Chicken': '/UFO/Zinger Chicken_UFO.png',
+      'Cheese Burst': '/UFO/Cheese Burst_UFO.png',
+    },
+    Thickshakes: {
+      'Butterscotch Banana': '/Thickshakes/Butterscotch Banana_Thickshake.png',
+      'Oreo': '/Thickshakes/Oreo_Thickshake.png',
+      'Hard Rock Coffee': '/Thickshakes/Hard Rock Coffee_Thickshake.png',
+      'KitKat': '/Thickshakes/Kit Kat_Thickshake.png',
+      'Protein': '/Thickshakes/Protein_Thickshake.png',
+      'Belgian Chocolate': '/Thickshakes/Belgian Chocolate_Thickshake.png',
+      'Nutella': '/Thickshakes/Nutella_Thickshake.png',
+    },
+    Mojitos: {
+      'Blue Heaven': '/Mojitos/Blue Heaven_Mojitos.png',
+      'Virgin': '/Mojitos/Virgin_Mojitos.png',
+      'Mint': '/Mojitos/Mint_Mojitos.png',
+      'Grilled Pineapple': '/Mojitos/Grilled Pineapple_Mojito.png',
+      'Watermelon': '/Mojitos/Watermelon_Mojitos.png',
+    },
+  }
+  
+  const categoryMap = categoryMaps[category]
+  return categoryMap?.[itemName] || categoryImages[category] || '/wrap.png'
+}
 
 const categoryImages: Record<keyof typeof menuItems, string> = {
   Wraps: '/wrap.png',
@@ -77,7 +119,6 @@ const categoryImages: Record<keyof typeof menuItems, string> = {
   UFO: '/wrap.png',
   Thickshakes: '/thickshake.png',
   Mojitos: '/thickshake.png',
-  Desserts: '/dessert.png',
 }
 
 export default function WrapVariants() {
@@ -234,7 +275,7 @@ export default function WrapVariants() {
               <div className="relative w-full max-w-xl mx-auto bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
                 <img
                   ref={imageRef}
-                  src={categoryImages[selectedCategory]}
+                  src={getItemImage(selectedCategory, currentVariant.name)}
                   alt={currentVariant.name}
                   className="w-full h-auto object-contain"
                 />

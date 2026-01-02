@@ -238,7 +238,21 @@ export default function Hero() {
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-wrappy-red to-wrappy-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </button>
-            <button className="group border-2 border-wrappy-black/20 text-wrappy-black px-7 md:px-9 py-3 md:py-4 rounded-full text-sm md:text-base font-bold hover:bg-wrappy-black hover:text-wrappy-cream hover:border-wrappy-black transition-all duration-300 transform hover:scale-105 backdrop-blur-sm bg-wrappy-cream/50">
+            <button 
+              onClick={() => {
+                const menuSection = document.getElementById('wraps')
+                if (menuSection) {
+                  const offset = 100 // Offset for fixed navigation
+                  const elementPosition = menuSection.getBoundingClientRect().top
+                  const offsetPosition = elementPosition + window.pageYOffset - offset
+                  window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                  })
+                }
+              }}
+              className="group border-2 border-wrappy-black/20 text-wrappy-black px-7 md:px-9 py-3 md:py-4 rounded-full text-sm md:text-base font-bold hover:bg-wrappy-black hover:text-wrappy-cream hover:border-wrappy-black transition-all duration-300 transform hover:scale-105 backdrop-blur-sm bg-wrappy-cream/50"
+            >
               <span className="flex items-center gap-2">
                 Explore Menu
                 <svg className="w-4 h-4 md:w-5 md:h-5 transform group-hover:rotate-90 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
