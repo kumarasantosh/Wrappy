@@ -65,9 +65,9 @@ export default function Navigation() {
               <a href="/franchise" className="text-wrappy-black hover:text-wrappy-red transition-colors">
                 Franchise
               </a>
-              <button className="bg-wrappy-black text-wrappy-cream px-6 py-2 rounded-full hover:bg-wrappy-red transition-colors">
+              <a href="https://shop.wrappy.co.in/" className="bg-wrappy-black text-wrappy-cream px-6 py-2 rounded-full hover:bg-wrappy-red transition-colors">
                 Order Now
-              </button>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -118,12 +118,13 @@ export default function Navigation() {
           >
             Franchise
           </a>
-          <button
-            className="menu-item bg-wrappy-cream text-wrappy-black px-8 py-4 rounded-full text-xl font-bold hover:bg-wrappy-red hover:text-wrappy-cream transition-colors"
+          <a
+            href="https://shop.wrappy.co.in/"
+            className="menu-item bg-wrappy-cream text-wrappy-black px-8 py-4 rounded-full text-xl font-bold hover:bg-wrappy-red hover:text-wrappy-cream transition-colors text-center inline-block"
             onClick={() => setIsMenuOpen(false)}
           >
             Order Now
-          </button>
+          </a>
         </div>
       </div>
     </>

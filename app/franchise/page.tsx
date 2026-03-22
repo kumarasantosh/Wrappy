@@ -15,7 +15,7 @@ export default function FranchisePage() {
   const infoRef = useRef<HTMLDivElement>(null)
   const footerRef = useRef<HTMLDivElement>(null)
   const logoRef = useRef<HTMLImageElement>(null)
-  
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -25,7 +25,7 @@ export default function FranchisePage() {
     experience: '',
     message: '',
   })
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
@@ -135,7 +135,7 @@ export default function FranchisePage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     // Ensure required selections are made
     if (!formData.experience) {
       setSubmitStatus('error')
@@ -186,7 +186,7 @@ export default function FranchisePage() {
   return (
     <main className="relative min-h-screen bg-wrappy-cream overflow-hidden">
       {/* Subtle Grid Pattern Background */}
-      <div 
+      <div
         className="fixed inset-0 opacity-[0.03] pointer-events-none z-0"
         style={{
           backgroundImage: `
@@ -196,7 +196,7 @@ export default function FranchisePage() {
           backgroundSize: '40px 40px',
         }}
       />
-      
+
       <Navigation />
       <div ref={containerRef} className="pt-24 pb-16 relative z-10">
         {/* Header Section */}
@@ -207,7 +207,7 @@ export default function FranchisePage() {
           >
             Talk to our friendly franchise team
           </h1>
-          <p 
+          <p
             ref={subtitleRef}
             className="text-lg md:text-xl text-gray-600 max-w-2xl"
           >
@@ -402,15 +402,6 @@ export default function FranchisePage() {
                     </svg>
                     Start a live chat
                   </a>
-                  <a
-                    href="mailto:franchise@wrappy.com"
-                    className="flex items-center gap-3 text-wrappy-black hover:text-wrappy-red transition-colors font-medium"
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    Shoot us an email
-                  </a>
                 </div>
               </div>
 
@@ -446,7 +437,7 @@ export default function FranchisePage() {
                 <p className="text-sm text-gray-600 mb-4">
                   Chat to us in person at our headquarters.
                 </p>
-                <a 
+                <a
                   href="https://www.google.com/maps?s=web&lqi=CgZ3cmFwcHlaCCIGd3JhcHB5kgEEY2FmZQ&phdesc=OYnrx5lF4O4&vet=12ahUKEwihucWnmuWRAxXlZWwGHVzVKvgQ1YkKegQIKxAB..i&cs=0&um=1&ie=UTF-8&fb=1&gl=in&sa=X&geocode=KU-izR80kcs7Md0cm5ix8g4Y&daddr=Shop+5A,+Plot+192,+Addagutta+Society+-+Jal+Vayu+Vihar+Raod,+near+JNTU,+Addagutta+Society,+Jal+Vayu+Vihar,+Kukatpally,+Hyderabad,+Telangana+500085"
                   target="_blank"
                   rel="noopener noreferrer"

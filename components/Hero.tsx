@@ -229,15 +229,15 @@ export default function Hero() {
           </p>
 
           <div ref={ctaRef} className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
-            <button className="group relative bg-wrappy-black text-wrappy-cream px-7 md:px-9 py-3 md:py-4 rounded-full text-sm md:text-base font-bold overflow-hidden shadow-2xl hover:shadow-wrappy-red/20 transition-all duration-300 transform hover:scale-105">
-              <span className="relative z-10 flex items-center gap-2">
+            <a href="https://shop.wrappy.co.in/" className="group relative block bg-wrappy-black text-wrappy-cream px-7 md:px-9 py-3 md:py-4 rounded-full text-sm md:text-base font-bold overflow-hidden shadow-2xl hover:shadow-wrappy-red/20 transition-all duration-300 transform hover:scale-105">
+              <span className="relative z-10 flex items-center justify-center gap-2">
                 Order Now
                 <svg className="w-4 h-4 md:w-5 md:h-5 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-wrappy-red to-wrappy-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </button>
+            </a>
             <button 
               onClick={() => {
                 const menuSection = document.getElementById('wraps')

@@ -17,15 +17,16 @@ export default function FinalCTA() {
       if (titleRef.current) {
         const originalText = titleRef.current.textContent || 'Hungry Yet?'
         const words = originalText.trim().split(/\s+/).filter(word => word.length > 0)
-        
+
         if (words.length > 0 && titleRef.current) {
           titleRef.current.innerHTML = words
             .map((word) => `<span class="inline-block">${word}</span>`)
             .join(' ')
 
           const wordSpans = Array.from(titleRef.current.children) as HTMLElement[]
-          
+
           if (wordSpans.length > 0) {
+            gsap.set(wordSpans, { opacity: 0, y: 50, scale: 0.8 })
             gsap.fromTo(
               wordSpans,
               { opacity: 0, y: 50, scale: 0.8 },
@@ -38,7 +39,8 @@ export default function FinalCTA() {
                 ease: 'back.out(1.7)',
                 scrollTrigger: {
                   trigger: titleRef.current,
-                  start: 'top 80%',
+                  start: 'top 90%',
+                  once: true,
                 },
               }
             )
@@ -47,19 +49,21 @@ export default function FinalCTA() {
       }
 
       if (buttonsRef.current) {
+        const buttons = Array.from(buttonsRef.current.children) as HTMLElement[]
+        gsap.set(buttons, { opacity: 0, scale: 0.8 })
         gsap.fromTo(
-          buttonsRef.current.children,
+          buttons,
           { opacity: 0, scale: 0.8 },
           {
             opacity: 1,
             scale: 1,
             duration: 0.6,
             stagger: 0.1,
-            delay: 0.5,
             ease: 'back.out(1.7)',
             scrollTrigger: {
               trigger: buttonsRef.current,
-              start: 'top 85%',
+              start: 'top 90%',
+              once: true,
             },
           }
         )
@@ -74,6 +78,9 @@ export default function FinalCTA() {
           ease: 'linear',
         })
       }
+
+      // Ensure ScrollTrigger recalculates positions after layout settles
+      ScrollTrigger.refresh()
     }, sectionRef)
 
     return () => ctx.revert()
@@ -112,9 +119,9 @@ export default function FinalCTA() {
         </h2>
 
         <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-          <button className="bg-wrappy-cream text-wrappy-black px-10 py-4 rounded-full text-xl font-bold hover:bg-wrappy-lime transition-colors transform hover:scale-105">
+          <a href="https://shop.wrappy.co.in/" className="bg-wrappy-cream text-wrappy-black px-10 py-4 rounded-full text-xl font-bold hover:bg-wrappy-lime transition-colors transform hover:scale-105 text-center inline-block">
             Order Now
-          </button>
+          </a>
           <a 
             href="https://www.google.com/maps?s=web&lqi=CgZ3cmFwcHlaCCIGd3JhcHB5kgEEY2FmZQ&phdesc=OYnrx5lF4O4&vet=12ahUKEwihucWnmuWRAxXlZWwGHVzVKvgQ1YkKegQIKxAB..i&cs=0&um=1&ie=UTF-8&fb=1&gl=in&sa=X&geocode=KU-izR80kcs7Md0cm5ix8g4Y&daddr=Shop+5A,+Plot+192,+Addagutta+Society+-+Jal+Vayu+Vihar+Raod,+near+JNTU,+Addagutta+Society,+Jal+Vayu+Vihar,+Kukatpally,+Hyderabad,+Telangana+500085"
             target="_blank"

@@ -218,9 +218,9 @@ export default function BuildYourWrap() {
                 >
                   Build Another
                 </button>
-                <button className="bg-wrappy-red text-wrappy-cream px-8 py-3 rounded-full font-bold hover:bg-wrappy-orange transition-colors">
+                <a href="https://shop.wrappy.co.in/" className="bg-wrappy-red text-wrappy-cream px-8 py-3 rounded-full font-bold hover:bg-wrappy-orange transition-colors text-center inline-block">
                   Order Now
-                </button>
+                </a>
               </div>
             </div>
           </div>
