@@ -12,7 +12,7 @@
 !.yarn/versions
 =======
 .pnp.js
->>>>>>> 57c897d (Initial Wrappy website with GSAP animations)
+>>>>>>> 57c897d (Initial wrappy website with GSAP animations)
 
 # testing
 /coverage
@@ -41,7 +41,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
->>>>>>> 57c897d (Initial Wrappy website with GSAP animations)
+>>>>>>> 57c897d (Initial wrappy website with GSAP animations)
 
 # vercel
 .vercel
@@ -52,4 +52,4 @@ next-env.d.ts
 <<<<<<< HEAD
 =======
 
->>>>>>> 57c897d (Initial Wrappy website with GSAP animations)
+>>>>>>> 57c897d (Initial wrappy website with GSAP animations)

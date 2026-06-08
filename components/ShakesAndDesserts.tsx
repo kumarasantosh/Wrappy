@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
-import { useRef } from 'react'
+import { useRef } from "react";
 
 export default function ShakesAndDesserts() {
-  const sectionRef = useRef<HTMLElement>(null)
+  const sectionRef = useRef<HTMLElement>(null);
 
   return (
     <section
@@ -22,5 +22,5 @@ export default function ShakesAndDesserts() {
         {/* Content removed */}
       </div>
     </section>
-  )
+  );
 }

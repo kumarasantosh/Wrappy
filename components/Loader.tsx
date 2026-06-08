@@ -1,26 +1,26 @@
-'use client'
+"use client";
 
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 
 interface LoaderProps {
-  onComplete: () => void
+  onComplete: () => void;
 }
 
 export default function Loader({ onComplete }: LoaderProps) {
-  const loaderRef = useRef<HTMLDivElement>(null)
-  const textRef = useRef<HTMLDivElement>(null)
-  const maskRef = useRef<HTMLDivElement>(null)
+  const loaderRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const maskRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const texts = ['Rolling Fresh', 'Wrapping Flavours', 'Welcome to Wrappy']
-    let currentIndex = 0
+    const texts = ["Rolling Fresh", "Wrapping Flavours", "Welcome to wrappy"];
+    let currentIndex = 0;
 
     const showText = (index: number) => {
-      if (!textRef.current) return
+      if (!textRef.current) return;
 
-      const text = texts[index]
-      textRef.current.textContent = text
+      const text = texts[index];
+      textRef.current.textContent = text;
 
       gsap.fromTo(
         textRef.current,
@@ -30,9 +30,9 @@ export default function Loader({ onComplete }: LoaderProps) {
           y: 0,
           scale: 1,
           duration: 0.6,
-          ease: 'power3.out',
-        }
-      )
+          ease: "power3.out",
+        },
+      );
 
       if (index < texts.length - 1) {
         gsap.to(textRef.current, {
@@ -41,9 +41,9 @@ export default function Loader({ onComplete }: LoaderProps) {
           scale: 0.8,
           duration: 0.4,
           delay: 0.8,
-          ease: 'power3.in',
+          ease: "power3.in",
           onComplete: () => showText(index + 1),
-        })
+        });
       } else {
         gsap.to(textRef.current, {
           opacity: 0,
@@ -51,16 +51,16 @@ export default function Loader({ onComplete }: LoaderProps) {
           scale: 0.8,
           duration: 0.4,
           delay: 0.8,
-          ease: 'power3.in',
+          ease: "power3.in",
           onComplete: () => {
             // Exit animation with vertical mask reveal
             if (maskRef.current) {
               gsap.to(maskRef.current, {
                 scaleY: 0,
                 duration: 1,
-                ease: 'power3.inOut',
-                transformOrigin: 'top',
-              })
+                ease: "power3.inOut",
+                transformOrigin: "top",
+              });
             }
             if (loaderRef.current) {
               gsap.to(loaderRef.current, {
@@ -68,19 +68,19 @@ export default function Loader({ onComplete }: LoaderProps) {
                 duration: 0.5,
                 delay: 0.3,
                 onComplete: () => {
-                  onComplete()
+                  onComplete();
                 },
-              })
+              });
             } else {
-              onComplete()
+              onComplete();
             }
           },
-        })
+        });
       }
-    }
+    };
 
-    showText(0)
-  }, [onComplete])
+    showText(0);
+  }, [onComplete]);
 
   return (
     <div
@@ -97,6 +97,5 @@ export default function Loader({ onComplete }: LoaderProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

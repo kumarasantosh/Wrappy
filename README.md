@@ -3,11 +3,11 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
-=======
-# Wrappy - Premium Food Brand Website
+# First, run the development server:
 
-A modern, premium, Gen-Z friendly website for **Wrappy** - a food brand focused on wraps, fries, beverages, shakes, desserts, and snacks.
+# wrappy - Premium Food Brand Website
+
+A modern, premium, Gen-Z friendly website for **wrappy** - a food brand focused on wraps, fries, beverages, shakes, desserts, and snacks.
 
 ## Features
 
@@ -30,7 +30,7 @@ A modern, premium, Gen-Z friendly website for **Wrappy** - a food brand focused 
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 
 ### Installation
@@ -44,7 +44,7 @@ yarn install
 ```
 
 2. Run the development server:
->>>>>>> 57c897d (Initial Wrappy website with GSAP animations)
+   > > > > > > > 57c897d (Initial wrappy website with GSAP animations)
 
 ```bash
 npm run dev
@@ -77,8 +77,11 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# Wrappy
+
+# wrappy
+
 =======
+
 ```
 
 3. Open [http://localhost:3000](http://localhost:3000) in your browser.
@@ -86,22 +89,24 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## Project Structure
 
 ```
+
 ├── app/
-│   ├── layout.tsx       # Root layout
-│   ├── page.tsx         # Homepage
-│   └── globals.css      # Global styles
+│ ├── layout.tsx # Root layout
+│ ├── page.tsx # Homepage
+│ └── globals.css # Global styles
 ├── components/
-│   ├── Loader.tsx       # Animated loader
-│   ├── Navigation.tsx   # Sticky navbar
-│   ├── Hero.tsx         # Hero section
-│   ├── SignatureWraps.tsx    # Wraps showcase
-│   ├── FriesAndSides.tsx     # Fries section
-│   ├── ShakesAndDesserts.tsx # Shakes & desserts
-│   ├── BuildYourWrap.tsx     # Interactive builder
-│   ├── BrandStory.tsx        # Brand story
-│   └── FinalCTA.tsx          # Final call-to-action
-└── public/              # Static assets
-```
+│ ├── Loader.tsx # Animated loader
+│ ├── Navigation.tsx # Sticky navbar
+│ ├── Hero.tsx # Hero section
+│ ├── SignatureWraps.tsx # Wraps showcase
+│ ├── FriesAndSides.tsx # Fries section
+│ ├── ShakesAndDesserts.tsx # Shakes & desserts
+│ ├── BuildYourWrap.tsx # Interactive builder
+│ ├── BrandStory.tsx # Brand story
+│ └── FinalCTA.tsx # Final call-to-action
+└── public/ # Static assets
+
+````
 
 ## Brand Colors
 
@@ -125,10 +130,10 @@ All animations use GSAP for smooth, performant effects:
 ```bash
 npm run build
 npm start
-```
+````
 
 ## License
 
 Private project - All rights reserved
 
->>>>>>> 57c897d (Initial Wrappy website with GSAP animations)
+> > > > > > > 57c897d (Initial wrappy website with GSAP animations)

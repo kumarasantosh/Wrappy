@@ -1,47 +1,47 @@
-'use client'
+"use client";
 
-import { useEffect, useRef, useState } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Navigation from '@/components/Navigation'
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Navigation from "@/components/Navigation";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
 export default function LaunchPage() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const subtitleRef = useRef<HTMLDivElement>(null)
-  const contentRef = useRef<HTMLDivElement>(null)
-  const ctaRef = useRef<HTMLDivElement>(null)
-  const mapRef = useRef<HTMLDivElement>(null)
-  const logoRef1 = useRef<HTMLImageElement>(null)
-  const logoRef2 = useRef<HTMLImageElement>(null)
-  const logoRef3 = useRef<HTMLImageElement>(null)
-  const confettiRef = useRef<HTMLCanvasElement>(null)
-  const [showConfetti, setShowConfetti] = useState(true)
+  const containerRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<HTMLDivElement>(null);
+  const logoRef1 = useRef<HTMLImageElement>(null);
+  const logoRef2 = useRef<HTMLImageElement>(null);
+  const logoRef3 = useRef<HTMLImageElement>(null);
+  const confettiRef = useRef<HTMLCanvasElement>(null);
+  const [showConfetti, setShowConfetti] = useState(true);
 
   useEffect(() => {
     // Confetti effect on load
     if (confettiRef.current && showConfetti) {
-      const canvas = confettiRef.current
-      const ctx = canvas.getContext('2d')
-      if (!ctx) return
+      const canvas = confettiRef.current;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
 
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
 
       const confetti: Array<{
-        x: number
-        y: number
-        r: number
-        d: number
-        color: string
-        tilt: number
-        tiltAngleIncrement: number
-        tiltAngle: number
-      }> = []
+        x: number;
+        y: number;
+        r: number;
+        d: number;
+        color: string;
+        tilt: number;
+        tiltAngleIncrement: number;
+        tiltAngle: number;
+      }> = [];
 
-      const colors = ['#ff1e1e', '#ff6b35', '#d4ff00', '#0e0e0e', '#f9f5ef']
+      const colors = ["#ff1e1e", "#ff6b35", "#d4ff00", "#0e0e0e", "#f9f5ef"];
 
       for (let i = 0; i < 150; i++) {
         confetti.push({
@@ -53,25 +53,25 @@ export default function LaunchPage() {
           tilt: Math.floor(Math.random() * 10) - 10,
           tiltAngleIncrement: Math.random() * 0.07 + 0.05,
           tiltAngle: 0,
-        })
+        });
       }
 
-      let animationFrame: number
+      let animationFrame: number;
       const confettiAnimation = () => {
-        if (!ctx) return
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        if (!ctx) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         confetti.forEach((c, i) => {
-          ctx.beginPath()
-          ctx.lineWidth = c.r / 2
-          ctx.strokeStyle = c.color
-          ctx.moveTo(c.x + c.tilt + c.r, c.y)
-          ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r)
-          ctx.stroke()
+          ctx.beginPath();
+          ctx.lineWidth = c.r / 2;
+          ctx.strokeStyle = c.color;
+          ctx.moveTo(c.x + c.tilt + c.r, c.y);
+          ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r);
+          ctx.stroke();
 
-          c.tiltAngle += c.tiltAngleIncrement
-          c.y += (Math.cos(c.d) + 3 + c.r / 2) / 2
-          c.tilt = Math.sin(c.tiltAngle - i / 3) * 15
+          c.tiltAngle += c.tiltAngleIncrement;
+          c.y += (Math.cos(c.d) + 3 + c.r / 2) / 2;
+          c.tilt = Math.sin(c.tiltAngle - i / 3) * 15;
 
           if (c.y > canvas.height) {
             confetti[i] = {
@@ -83,45 +83,48 @@ export default function LaunchPage() {
               tilt: Math.floor(Math.random() * 10) - 10,
               tiltAngleIncrement: c.tiltAngleIncrement,
               tiltAngle: 0,
-            }
+            };
           }
-        })
+        });
 
-        animationFrame = requestAnimationFrame(confettiAnimation)
-      }
+        animationFrame = requestAnimationFrame(confettiAnimation);
+      };
 
-      confettiAnimation()
+      confettiAnimation();
 
       // Stop confetti after 8 seconds
       setTimeout(() => {
-        cancelAnimationFrame(animationFrame)
-        setShowConfetti(false)
-      }, 8000)
+        cancelAnimationFrame(animationFrame);
+        setShowConfetti(false);
+      }, 8000);
 
       return () => {
-        cancelAnimationFrame(animationFrame)
-      }
+        cancelAnimationFrame(animationFrame);
+      };
     }
-  }, [showConfetti])
+  }, [showConfetti]);
 
   useEffect(() => {
     // Override navigation links to go to home
     const handleNavClick = (e: Event) => {
-      const target = e.target as HTMLElement
-      if (target.tagName === 'A' && (target as HTMLAnchorElement).href.includes('#')) {
-        e.preventDefault()
-        window.location.href = '/'
+      const target = e.target as HTMLElement;
+      if (
+        target.tagName === "A" &&
+        (target as HTMLAnchorElement).href.includes("#")
+      ) {
+        e.preventDefault();
+        window.location.href = "/";
       }
-    }
+    };
 
-    const nav = document.querySelector('nav')
+    const nav = document.querySelector("nav");
     if (nav) {
-      nav.addEventListener('click', handleNavClick)
+      nav.addEventListener("click", handleNavClick);
       return () => {
-        nav.removeEventListener('click', handleNavClick)
-      }
+        nav.removeEventListener("click", handleNavClick);
+      };
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -135,9 +138,9 @@ export default function LaunchPage() {
             y: 0,
             duration: 1.2,
             delay: 0.3,
-            ease: 'power3.out',
-          }
-        )
+            ease: "power3.out",
+          },
+        );
       }
 
       // Subtitle animation
@@ -150,13 +153,13 @@ export default function LaunchPage() {
             y: 0,
             duration: 1,
             delay: 0.6,
-            ease: 'power2.out',
-          }
-        )
+            ease: "power2.out",
+          },
+        );
       }
 
       // Logo animations
-      const logos = [logoRef1, logoRef2, logoRef3]
+      const logos = [logoRef1, logoRef2, logoRef3];
       logos.forEach((logoRef) => {
         if (logoRef.current) {
           gsap.fromTo(
@@ -166,19 +169,21 @@ export default function LaunchPage() {
               opacity: 1,
               scale: 1,
               duration: 0.8,
-              ease: 'back.out(1.7)',
+              ease: "back.out(1.7)",
               scrollTrigger: {
                 trigger: logoRef.current,
-                start: 'top 85%',
+                start: "top 85%",
               },
-            }
-          )
+            },
+          );
         }
-      })
+      });
 
       // Content animation
       if (contentRef.current) {
-        const children = Array.from(contentRef.current.children) as HTMLElement[]
+        const children = Array.from(
+          contentRef.current.children,
+        ) as HTMLElement[];
         gsap.fromTo(
           children,
           { opacity: 0, y: 40 },
@@ -188,13 +193,13 @@ export default function LaunchPage() {
             duration: 0.9,
             stagger: 0.2,
             delay: 0.9,
-            ease: 'power2.out',
+            ease: "power2.out",
             scrollTrigger: {
               trigger: contentRef.current,
-              start: 'top 85%',
+              start: "top 85%",
             },
-          }
-        )
+          },
+        );
       }
 
       // CTA animation
@@ -206,13 +211,13 @@ export default function LaunchPage() {
             opacity: 1,
             scale: 1,
             duration: 0.8,
-            ease: 'back.out(1.7)',
+            ease: "back.out(1.7)",
             scrollTrigger: {
               trigger: ctaRef.current,
-              start: 'top 85%',
+              start: "top 85%",
             },
-          }
-        )
+          },
+        );
       }
 
       // Map animation
@@ -224,19 +229,18 @@ export default function LaunchPage() {
             opacity: 1,
             y: 0,
             duration: 1,
-            ease: 'power2.out',
+            ease: "power2.out",
             scrollTrigger: {
               trigger: mapRef.current,
-              start: 'top 80%',
+              start: "top 80%",
             },
-          }
-        )
+          },
+        );
       }
+    }, containerRef);
 
-    }, containerRef)
-
-    return () => ctx.revert()
-  }, [])
+    return () => ctx.revert();
+  }, []);
 
   return (
     <main className="relative min-h-screen bg-gradient-to-br from-wrappy-cream via-wrappy-cream to-wrappy-cream/80 overflow-hidden">
@@ -245,24 +249,24 @@ export default function LaunchPage() {
         <canvas
           ref={confettiRef}
           className="fixed top-0 left-0 w-full h-full pointer-events-none z-50"
-          style={{ position: 'fixed' }}
+          style={{ position: "fixed" }}
         />
       )}
 
       {/* Gradient Orbs */}
       <div className="fixed top-20 right-20 w-64 md:w-80 h-64 md:h-80 bg-wrappy-red/10 rounded-full blur-3xl pointer-events-none z-0" />
       <div className="fixed bottom-20 left-20 w-64 md:w-80 h-64 md:h-80 bg-wrappy-orange/10 rounded-full blur-3xl pointer-events-none z-0" />
-      
+
       <Navigation />
       <div ref={containerRef} className="pt-20 pb-16 relative z-10">
         {/* Hero Section */}
         <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-16 md:py-24">
           <div className="mb-8">
             <div className="inline-block px-4 py-2 border-2 border-black text-sm font-bold tracking-widest uppercase mb-8">
-            Try Our Signature Collection
+              Try Our Signature Collection
             </div>
           </div>
-          
+
           <h1
             ref={titleRef}
             className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 font-display leading-none text-black"
@@ -270,12 +274,15 @@ export default function LaunchPage() {
             You're Invited!
           </h1>
 
-          <div ref={subtitleRef} className="mb-8 flex items-center justify-center gap-4 flex-wrap">
+          <div
+            ref={subtitleRef}
+            className="mb-8 flex items-center justify-center gap-4 flex-wrap"
+          >
             <div className="flex-shrink-0">
-              <img 
+              <img
                 ref={logoRef1}
-                src="/images/logo2.png" 
-                alt="WRAPPY" 
+                src="/images/logo2.png"
+                alt="wrappy"
                 className="h-16 md:h-20 lg:h-24 xl:h-20 w-auto object-contain"
               />
             </div>
@@ -296,7 +303,10 @@ export default function LaunchPage() {
 
         {/* Content Section */}
         <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12">
-          <div ref={contentRef} className="space-y-8 text-lg md:text-xl text-gray-700 leading-relaxed text-center">
+          <div
+            ref={contentRef}
+            className="space-y-8 text-lg md:text-xl text-gray-700 leading-relaxed text-center"
+          >
             <p className="text-3xl md:text-4xl font-bold text-black">
               Hey Foodies 👋
             </p>
@@ -306,8 +316,9 @@ export default function LaunchPage() {
                 Come celebrate with us
               </p>
               <p className="text-base md:text-lg text-gray-600 mt-4">
-                our doors are officially open and we're rolling out the{' '}
-                <span className="font-bold text-green-600">freshest wraps</span> in town!
+                our doors are officially open and we're rolling out the{" "}
+                <span className="font-bold text-green-600">freshest wraps</span>{" "}
+                in town!
               </p>
             </div>
 
@@ -329,12 +340,12 @@ export default function LaunchPage() {
             </div>
 
             <p className="text-xl md:text-2xl flex items-center justify-center flex-wrap gap-2">
-              Your new favourite spot for quick, delicious bites is here:{' '}
+              Your new favourite spot for quick, delicious bites is here:{" "}
               <span className="flex items-center gap-2 whitespace-nowrap">
-                <img 
+                <img
                   ref={logoRef2}
-                  src="/images/logo2.png" 
-                  alt="WRAPPY" 
+                  src="/images/logo2.png"
+                  alt="wrappy"
                   className="h-12 md:h-16 lg:h-[40px] inline-block object-contain"
                 />
                 <span>– Fresh Wraps & Fries</span>
@@ -360,11 +371,11 @@ export default function LaunchPage() {
               Our Store
             </h2>
           </div>
-          
+
           <div ref={ctaRef} className="w-full flex justify-center">
-            <img 
-              src="/images/image.jpeg" 
-              alt="WRAPPY" 
+            <img
+              src="/images/image.jpeg"
+              alt="wrappy"
               className="w-1/2 h-auto object-cover rounded-lg"
             />
           </div>
@@ -381,7 +392,7 @@ export default function LaunchPage() {
                 Find Us Here
               </h2>
             </div>
-            
+
             <div className="w-full h-[400px] md:h-[500px] border-4 border-black overflow-hidden relative bg-gray-100">
               <iframe
                 src="https://maps.google.com/maps?width=600&height=400&hl=en&q=wrappy&t=&z=14&ie=UTF8&iwloc=B&output=embed"
@@ -392,11 +403,9 @@ export default function LaunchPage() {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="w-full h-full"
-                title="WRAPPY Location"
+                title="wrappy Location"
               />
             </div>
-            
-            
           </div>
         </section>
 
@@ -415,10 +424,10 @@ export default function LaunchPage() {
               <span className="text-lg md:text-xl lg:text-2xl font-black text-black font-display uppercase tracking-widest">
                 Team
               </span>
-              <img 
+              <img
                 ref={logoRef3}
-                src="/images/logo2.png" 
-                alt="WRAPPY" 
+                src="/images/logo2.png"
+                alt="wrappy"
                 className="h-10 md:h-12 lg:h-14 w-auto object-contain"
               />
             </div>
@@ -426,5 +435,5 @@ export default function LaunchPage() {
         </section>
       </div>
     </main>
-  )
+  );
 }

@@ -1,30 +1,36 @@
-'use client'
+"use client";
 
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
 const items = [
-  { name: 'Classic Crispy Fries', emoji: '🍟' },
-  { name: 'Peri Peri Fries', emoji: '🌶️' },
-  { name: 'Signature Mixed Fries', emoji: '🍟' },
-  { name: 'Chicken-Loaded Crispy Fries', emoji: '🍗' },
-  { name: 'Cheesy Loaded Fries', emoji: '🧀' },
-  { name: 'Golden Chicken Nuggets', emoji: '🍗' },
-  { name: 'Crispy Chicken Strips', emoji: '🍗' },
-]
+  { name: "Classic Crispy Fries", emoji: "🍟" },
+  { name: "Peri Peri Fries", emoji: "🌶️" },
+  { name: "Signature Mixed Fries", emoji: "🍟" },
+  { name: "Chicken-Loaded Crispy Fries", emoji: "🍗" },
+  { name: "Cheesy Loaded Fries", emoji: "🧀" },
+  { name: "Golden Chicken Nuggets", emoji: "🍗" },
+  { name: "Crispy Chicken Strips", emoji: "🍗" },
+];
 
 export default function FriesAndSides() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const itemsRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const itemsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const mouseEnterHandlers: Array<{ child: HTMLElement; handler: () => void }> = []
-    const mouseLeaveHandlers: Array<{ child: HTMLElement; handler: () => void }> = []
-    
+    const mouseEnterHandlers: Array<{
+      child: HTMLElement;
+      handler: () => void;
+    }> = [];
+    const mouseLeaveHandlers: Array<{
+      child: HTMLElement;
+      handler: () => void;
+    }> = [];
+
     const ctx = gsap.context(() => {
       if (titleRef.current) {
         gsap.fromTo(
@@ -36,14 +42,14 @@ export default function FriesAndSides() {
             duration: 1,
             scrollTrigger: {
               trigger: titleRef.current,
-              start: 'top 80%',
+              start: "top 80%",
             },
-          }
-        )
+          },
+        );
       }
 
       if (itemsRef.current) {
-        const children = Array.from(itemsRef.current.children) as HTMLElement[]
+        const children = Array.from(itemsRef.current.children) as HTMLElement[];
 
         gsap.fromTo(
           children,
@@ -58,13 +64,13 @@ export default function FriesAndSides() {
             rotation: 0,
             duration: 0.5,
             stagger: 0.05,
-            ease: 'back.out(1.7)',
+            ease: "back.out(1.7)",
             scrollTrigger: {
               trigger: itemsRef.current,
-              start: 'top 80%',
+              start: "top 80%",
             },
-          }
-        )
+          },
+        );
 
         // Hover shake effect with z-index increase
         children.forEach((child) => {
@@ -76,43 +82,43 @@ export default function FriesAndSides() {
               duration: 0.2,
               yoyo: true,
               repeat: 1,
-              ease: 'power2.inOut',
-            })
+              ease: "power2.inOut",
+            });
             // Set z-index via style for immediate effect
-            child.style.zIndex = '50'
-          }
+            child.style.zIndex = "50";
+          };
           const handleMouseLeave = () => {
-            child.style.zIndex = '1'
+            child.style.zIndex = "1";
             gsap.to(child, {
               zIndex: 1,
               duration: 0.2,
-            })
-          }
-          child.addEventListener('mouseenter', handleMouseEnter)
-          child.addEventListener('mouseleave', handleMouseLeave)
-          mouseEnterHandlers.push({ child, handler: handleMouseEnter })
-          mouseLeaveHandlers.push({ child, handler: handleMouseLeave })
-        })
+            });
+          };
+          child.addEventListener("mouseenter", handleMouseEnter);
+          child.addEventListener("mouseleave", handleMouseLeave);
+          mouseEnterHandlers.push({ child, handler: handleMouseEnter });
+          mouseLeaveHandlers.push({ child, handler: handleMouseLeave });
+        });
       }
-    }, sectionRef)
+    }, sectionRef);
 
     return () => {
-      ctx.revert()
+      ctx.revert();
       mouseEnterHandlers.forEach(({ child, handler }) => {
-        child.removeEventListener('mouseenter', handler)
-      })
+        child.removeEventListener("mouseenter", handler);
+      });
       mouseLeaveHandlers.forEach(({ child, handler }) => {
-        child.removeEventListener('mouseleave', handler)
-      })
-    }
-  }, [])
+        child.removeEventListener("mouseleave", handler);
+      });
+    };
+  }, []);
 
   return (
     <section
       id="fries"
       ref={sectionRef}
       className="relative bg-wrappy-cream py-20 overflow-hidden"
-      style={{ overflow: 'visible' }}
+      style={{ overflow: "visible" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2
@@ -130,7 +136,7 @@ export default function FriesAndSides() {
             <div
               key={index}
               className="bg-wrappy-black text-wrappy-cream rounded-2xl p-6 text-center cursor-pointer transform-gpu relative"
-              style={{ willChange: 'transform', zIndex: 1 }}
+              style={{ willChange: "transform", zIndex: 1 }}
             >
               <div className="text-5xl mb-4">{item.emoji}</div>
               <h3 className="text-lg font-bold font-display">{item.name}</h3>
@@ -139,6 +145,5 @@ export default function FriesAndSides() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-

@@ -1,19 +1,19 @@
-'use client'
+"use client";
 
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const headlineRef = useRef<HTMLHeadingElement>(null)
-  const subtextRef = useRef<HTMLParagraphElement>(null)
-  const ctaRef = useRef<HTMLDivElement>(null)
-  const keywordsRef = useRef<HTMLDivElement>(null)
-  const scrollIndicatorRef = useRef<HTMLDivElement>(null)
-  const bgPatternRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLElement>(null);
+  const headlineRef = useRef<HTMLHeadingElement>(null);
+  const subtextRef = useRef<HTMLParagraphElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const keywordsRef = useRef<HTMLDivElement>(null);
+  const scrollIndicatorRef = useRef<HTMLDivElement>(null);
+  const bgPatternRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -23,14 +23,14 @@ export default function Hero() {
           rotate: 360,
           duration: 60,
           repeat: -1,
-          ease: 'none',
-        })
+          ease: "none",
+        });
       }
 
       // Headline animation - animate each line separately
       if (headlineRef.current) {
-        const lines = Array.from(headlineRef.current.children) as HTMLElement[]
-        
+        const lines = Array.from(headlineRef.current.children) as HTMLElement[];
+
         gsap.fromTo(
           lines,
           { y: 120, opacity: 0, rotationX: -90 },
@@ -40,25 +40,25 @@ export default function Hero() {
             rotationX: 0,
             duration: 1.2,
             stagger: 0.15,
-            ease: 'power3.out',
-          }
-        )
+            ease: "power3.out",
+          },
+        );
       }
 
       // Subtext animation
       if (subtextRef.current) {
         gsap.fromTo(
           subtextRef.current,
-          { opacity: 0, y: 40, filter: 'blur(10px)' },
+          { opacity: 0, y: 40, filter: "blur(10px)" },
           {
             opacity: 1,
             y: 0,
-            filter: 'blur(0px)',
+            filter: "blur(0px)",
             duration: 1,
             delay: 0.6,
-            ease: 'power3.out',
-          }
-        )
+            ease: "power3.out",
+          },
+        );
       }
 
       // CTA buttons animation
@@ -73,14 +73,16 @@ export default function Hero() {
             duration: 0.8,
             stagger: 0.15,
             delay: 1,
-            ease: 'back.out(1.8)',
-          }
-        )
+            ease: "back.out(1.8)",
+          },
+        );
       }
 
       // Floating keywords animation
       if (keywordsRef.current) {
-        const keywords = Array.from(keywordsRef.current.children) as HTMLElement[]
+        const keywords = Array.from(
+          keywordsRef.current.children,
+        ) as HTMLElement[];
         gsap.fromTo(
           keywords,
           { opacity: 0, y: 30, scale: 0.8 },
@@ -91,9 +93,9 @@ export default function Hero() {
             duration: 1.2,
             stagger: 0.15,
             delay: 1.3,
-            ease: 'power2.out',
-          }
-        )
+            ease: "power2.out",
+          },
+        );
 
         // Continuous float animation
         keywords.forEach((keyword, i) => {
@@ -102,10 +104,10 @@ export default function Hero() {
             duration: 3 + i * 0.3,
             repeat: -1,
             yoyo: true,
-            ease: 'power1.inOut',
+            ease: "power1.inOut",
             delay: i * 0.2,
-          })
-        })
+          });
+        });
       }
 
       // Scroll indicator animation
@@ -118,17 +120,17 @@ export default function Hero() {
             y: 0,
             duration: 1.2,
             delay: 1.8,
-            ease: 'power2.out',
-          }
-        )
+            ease: "power2.out",
+          },
+        );
 
         gsap.to(scrollIndicatorRef.current, {
           y: 15,
           duration: 2,
           repeat: -1,
           yoyo: true,
-          ease: 'power1.inOut',
-        })
+          ease: "power1.inOut",
+        });
       }
 
       // Parallax effect on scroll
@@ -138,23 +140,23 @@ export default function Hero() {
           opacity: 0,
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top top',
-            end: 'bottom top',
+            start: "top top",
+            end: "bottom top",
             scrub: 1,
           },
-        })
+        });
       }
-    }, sectionRef)
+    }, sectionRef);
 
-    return () => ctx.revert()
-  }, [])
+    return () => ctx.revert();
+  }, []);
 
   const keywords = [
-    'Crispy Chicken',
-    'Cheesy Paneer',
-    'Nutella',
-    'Peri Peri Fries',
-  ]
+    "Crispy Chicken",
+    "Cheesy Paneer",
+    "Nutella",
+    "Peri Peri Fries",
+  ];
 
   return (
     <section
@@ -168,7 +170,7 @@ export default function Hero() {
           className="absolute -top-1/2 -right-1/2 w-full h-full opacity-5"
           style={{
             backgroundImage: `radial-gradient(circle, #ff1e1e 2px, transparent 2px)`,
-            backgroundSize: '60px 60px',
+            backgroundSize: "60px 60px",
           }}
         />
       </div>
@@ -178,7 +180,10 @@ export default function Hero() {
       <div className="absolute bottom-20 left-20 w-64 md:w-80 h-64 md:h-80 bg-wrappy-orange/10 rounded-full blur-3xl" />
 
       {/* Floating Keywords */}
-      <div ref={keywordsRef} className="absolute inset-0 pointer-events-none z-0">
+      <div
+        ref={keywordsRef}
+        className="absolute inset-0 pointer-events-none z-0"
+      >
         {keywords.map((keyword, index) => (
           <div
             key={index}
@@ -208,11 +213,10 @@ export default function Hero() {
           <h1
             ref={headlineRef}
             className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-4 md:mb-6 font-display leading-tight tracking-tight text-wrappy-black"
-            style={{ perspective: '1000px' }}
+            style={{ perspective: "1000px" }}
           >
             <div className="block">
-              <span>Wrap It.</span>{' '}
-              <span>Bite It.</span>
+              <span>Wrap It.</span> <span>Bite It.</span>
             </div>
             <div className="block">Love It.</div>
           </h1>
@@ -228,35 +232,63 @@ export default function Hero() {
             </span>
           </p>
 
-          <div ref={ctaRef} className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
-            <a href="https://shop.wrappy.co.in/" className="group relative block bg-wrappy-black text-wrappy-cream px-7 md:px-9 py-3 md:py-4 rounded-full text-sm md:text-base font-bold overflow-hidden shadow-2xl hover:shadow-wrappy-red/20 transition-all duration-300 transform hover:scale-105">
+          <div
+            ref={ctaRef}
+            className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center"
+          >
+            <a
+              href="https://shop.wrappy.co.in/"
+              className="group relative block bg-wrappy-black text-wrappy-cream px-7 md:px-9 py-3 md:py-4 rounded-full text-sm md:text-base font-bold overflow-hidden shadow-2xl hover:shadow-wrappy-red/20 transition-all duration-300 transform hover:scale-105"
+            >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 Order Now
-                <svg className="w-4 h-4 md:w-5 md:h-5 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                <svg
+                  className="w-4 h-4 md:w-5 md:h-5 transform group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
                 </svg>
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-wrappy-red to-wrappy-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
-            <button 
+            <button
               onClick={() => {
-                const menuSection = document.getElementById('wraps')
+                const menuSection = document.getElementById("wraps");
                 if (menuSection) {
-                  const offset = 100 // Offset for fixed navigation
-                  const elementPosition = menuSection.getBoundingClientRect().top
-                  const offsetPosition = elementPosition + window.pageYOffset - offset
+                  const offset = 100; // Offset for fixed navigation
+                  const elementPosition =
+                    menuSection.getBoundingClientRect().top;
+                  const offsetPosition =
+                    elementPosition + window.pageYOffset - offset;
                   window.scrollTo({
                     top: offsetPosition,
-                    behavior: 'smooth'
-                  })
+                    behavior: "smooth",
+                  });
                 }
               }}
               className="group border-2 border-wrappy-black/20 text-wrappy-black px-7 md:px-9 py-3 md:py-4 rounded-full text-sm md:text-base font-bold hover:bg-wrappy-black hover:text-wrappy-cream hover:border-wrappy-black transition-all duration-300 transform hover:scale-105 backdrop-blur-sm bg-wrappy-cream/50"
             >
               <span className="flex items-center gap-2">
                 Explore Menu
-                <svg className="w-4 h-4 md:w-5 md:h-5 transform group-hover:rotate-90 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <svg
+                  className="w-4 h-4 md:w-5 md:h-5 transform group-hover:rotate-90 transition-transform"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 </svg>
               </span>
             </button>
@@ -278,5 +310,5 @@ export default function Hero() {
         </div>
       </div>
     </section>
-  )
+  );
 }

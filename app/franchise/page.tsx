@@ -1,33 +1,35 @@
-'use client'
+"use client";
 
-import { useEffect, useRef, useState } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
 export default function FranchisePage() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const subtitleRef = useRef<HTMLDivElement>(null)
-  const infoRef = useRef<HTMLDivElement>(null)
-  const footerRef = useRef<HTMLDivElement>(null)
-  const logoRef = useRef<HTMLImageElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLDivElement>(null);
+  const infoRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLImageElement>(null);
 
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    location: '',
-    experience: '',
-    message: '',
-  })
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    location: "",
+    experience: "",
+    message: "",
+  });
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -41,9 +43,9 @@ export default function FranchisePage() {
             y: 0,
             duration: 1.2,
             delay: 0.3,
-            ease: 'power3.out',
-          }
-        )
+            ease: "power3.out",
+          },
+        );
       }
 
       // Subtitle animation
@@ -56,9 +58,9 @@ export default function FranchisePage() {
             y: 0,
             duration: 1,
             delay: 0.6,
-            ease: 'power2.out',
-          }
-        )
+            ease: "power2.out",
+          },
+        );
       }
 
       // Logo animation
@@ -71,9 +73,9 @@ export default function FranchisePage() {
             scale: 1,
             duration: 0.8,
             delay: 0.8,
-            ease: 'back.out(1.7)',
-          }
-        )
+            ease: "back.out(1.7)",
+          },
+        );
       }
 
       // Form animation - will be handled by container animation
@@ -87,13 +89,13 @@ export default function FranchisePage() {
             opacity: 1,
             y: 0,
             duration: 0.9,
-            ease: 'power2.out',
+            ease: "power2.out",
             scrollTrigger: {
               trigger: infoRef.current,
-              start: 'top 85%',
+              start: "top 85%",
             },
-          }
-        )
+          },
+        );
       }
 
       // Footer animation
@@ -105,51 +107,53 @@ export default function FranchisePage() {
             opacity: 1,
             y: 0,
             duration: 0.8,
-            ease: 'power2.out',
+            ease: "power2.out",
             scrollTrigger: {
               trigger: footerRef.current,
-              start: 'top 85%',
+              start: "top 85%",
             },
-          }
-        )
+          },
+        );
       }
-    }, containerRef)
+    }, containerRef);
 
-    return () => ctx.revert()
-  }, [])
+    return () => ctx.revert();
+  }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
       ...prev,
       [name]: value,
-    }))
-  }
+    }));
+  };
 
   const handleExperienceChange = (value: string) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       experience: value,
-    }))
-  }
+    }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     // Ensure required selections are made
     if (!formData.experience) {
-      setSubmitStatus('error')
-      return
+      setSubmitStatus("error");
+      return;
     }
 
-    setIsSubmitting(true)
-    setSubmitStatus('idle')
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
 
     try {
-      const response = await fetch('/api/franchise', {
-        method: 'POST',
+      const response = await fetch("/api/franchise", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           name: `${formData.firstName} ${formData.lastName}`,
@@ -159,29 +163,29 @@ export default function FranchisePage() {
           experience: formData.experience,
           message: formData.message,
         }),
-      })
+      });
 
       if (!response.ok) {
-        throw new Error('Failed to submit form')
+        throw new Error("Failed to submit form");
       }
 
-      setSubmitStatus('success')
+      setSubmitStatus("success");
       setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        location: '',
-        experience: '',
-        message: '',
-      })
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        location: "",
+        experience: "",
+        message: "",
+      });
     } catch (error) {
-      console.error('Form submission error:', error)
-      setSubmitStatus('error')
+      console.error("Form submission error:", error);
+      setSubmitStatus("error");
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
     <main className="relative min-h-screen bg-wrappy-cream overflow-hidden">
@@ -193,7 +197,7 @@ export default function FranchisePage() {
             linear-gradient(to right, #0e0e0e 1px, transparent 1px),
             linear-gradient(to bottom, #0e0e0e 1px, transparent 1px)
           `,
-          backgroundSize: '40px 40px',
+          backgroundSize: "40px 40px",
         }}
       />
 
@@ -211,7 +215,8 @@ export default function FranchisePage() {
             ref={subtitleRef}
             className="text-lg md:text-xl text-gray-600 max-w-2xl"
           >
-            We'll help you find the perfect franchise opportunity, no matter your business size.
+            We'll help you find the perfect franchise opportunity, no matter
+            your business size.
           </p>
         </section>
 
@@ -224,7 +229,10 @@ export default function FranchisePage() {
                 {/* Name Fields */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="firstName" className="block text-sm font-bold text-wrappy-black mb-2">
+                    <label
+                      htmlFor="firstName"
+                      className="block text-sm font-bold text-wrappy-black mb-2"
+                    >
                       First name *
                     </label>
                     <input
@@ -239,7 +247,10 @@ export default function FranchisePage() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="lastName" className="block text-sm font-bold text-wrappy-black mb-2">
+                    <label
+                      htmlFor="lastName"
+                      className="block text-sm font-bold text-wrappy-black mb-2"
+                    >
                       Last name *
                     </label>
                     <input
@@ -257,7 +268,10 @@ export default function FranchisePage() {
 
                 {/* Email */}
                 <div>
-                  <label htmlFor="email" className="block text-sm font-bold text-wrappy-black mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-bold text-wrappy-black mb-2"
+                  >
                     Email *
                   </label>
                   <input
@@ -274,7 +288,10 @@ export default function FranchisePage() {
 
                 {/* Phone */}
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-bold text-wrappy-black mb-2">
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-bold text-wrappy-black mb-2"
+                  >
                     Phone number
                   </label>
                   <input
@@ -290,7 +307,10 @@ export default function FranchisePage() {
 
                 {/* Location */}
                 <div>
-                  <label htmlFor="location" className="block text-sm font-bold text-wrappy-black mb-2">
+                  <label
+                    htmlFor="location"
+                    className="block text-sm font-bold text-wrappy-black mb-2"
+                  >
                     Preferred Location *
                   </label>
                   <input
@@ -312,12 +332,12 @@ export default function FranchisePage() {
                   </label>
                   <div className="grid grid-cols-2 gap-3">
                     {[
-                      { value: 'none', label: 'No Experience' },
-                      { value: 'some', label: 'Some Experience' },
-                      { value: 'extensive', label: 'Extensive Experience' },
-                      { value: 'franchise', label: 'Franchise Owner' },
-                      { value: 'management', label: 'Restaurant Management' },
-                      { value: 'other', label: 'Other' },
+                      { value: "none", label: "No Experience" },
+                      { value: "some", label: "Some Experience" },
+                      { value: "extensive", label: "Extensive Experience" },
+                      { value: "franchise", label: "Franchise Owner" },
+                      { value: "management", label: "Restaurant Management" },
+                      { value: "other", label: "Other" },
                     ].map((option) => (
                       <label
                         key={option.value}
@@ -328,7 +348,9 @@ export default function FranchisePage() {
                           name="experience"
                           value={option.value}
                           checked={formData.experience === option.value}
-                          onChange={(e) => handleExperienceChange(e.target.value)}
+                          onChange={(e) =>
+                            handleExperienceChange(e.target.value)
+                          }
                           className="w-5 h-5 border-2 border-gray-300 focus:ring-2 focus:ring-wrappy-red text-wrappy-red cursor-pointer"
                         />
                         <span className="text-sm text-gray-700 group-hover:text-wrappy-black transition-colors">
@@ -341,7 +363,10 @@ export default function FranchisePage() {
 
                 {/* Message */}
                 <div>
-                  <label htmlFor="message" className="block text-sm font-bold text-wrappy-black mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-bold text-wrappy-black mb-2"
+                  >
                     Message *
                   </label>
                   <textarea
@@ -357,15 +382,17 @@ export default function FranchisePage() {
                 </div>
 
                 {/* Status Messages */}
-                {submitStatus === 'success' && (
+                {submitStatus === "success" && (
                   <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
-                    Thank you! We've received your inquiry and will contact you soon.
+                    Thank you! We've received your inquiry and will contact you
+                    soon.
                   </div>
                 )}
 
-                {submitStatus === 'error' && (
+                {submitStatus === "error" && (
                   <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
-                    Something went wrong. Please try again or contact us directly.
+                    Something went wrong. Please try again or contact us
+                    directly.
                   </div>
                 )}
 
@@ -375,7 +402,7 @@ export default function FranchisePage() {
                   disabled={isSubmitting || !formData.experience}
                   className="w-full bg-wrappy-black text-wrappy-cream px-6 py-3 rounded-lg font-bold hover:bg-wrappy-red transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? 'Sending...' : 'Send message'}
+                  {isSubmitting ? "Sending..." : "Send message"}
                 </button>
               </form>
             </div>
@@ -397,7 +424,11 @@ export default function FranchisePage() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 text-wrappy-black hover:text-wrappy-red transition-colors font-medium"
                   >
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <svg
+                      className="w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
                       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                     </svg>
                     Start a live chat
@@ -415,10 +446,10 @@ export default function FranchisePage() {
                 </p>
                 <div className="space-y-2">
                   <a
-                    href="tel:+1800WRAPPY"
+                    href="tel:+1800wrappy"
                     className="block text-wrappy-black hover:text-wrappy-red transition-colors font-bold underline"
                   >
-                    1-800-WRAPPY
+                    1-800-wrappy
                   </a>
                   <a
                     href="tel:+1234567890"
@@ -444,7 +475,8 @@ export default function FranchisePage() {
                   className="text-wrappy-black font-medium hover:text-wrappy-red transition-colors block"
                 >
                   Shop 5A, <br />
-                  Plot 192,<br />
+                  Plot 192,
+                  <br />
                   Addagutta Society
                 </a>
               </div>
@@ -454,5 +486,5 @@ export default function FranchisePage() {
       </div>
       <Footer />
     </main>
-  )
+  );
 }
