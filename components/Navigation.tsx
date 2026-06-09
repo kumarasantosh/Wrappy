@@ -48,12 +48,10 @@ export default function Navigation() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <div className="flex items-center">
-              <a href="/">
-                <img
-                  src="/images/logo.png"
-                  alt="wrappy"
-                  className="h-[205px] md:h-[205px] lg:h-[205px] w-auto object-contain cursor-pointer"
-                />
+              <a href="/" className="cursor-pointer">
+                <span className="font-serif text-3xl font-bold tracking-tight text-wrappy-black">
+                  Wrapz <span className="text-wrappy-red">N</span> Fryz
+                </span>
               </a>
             </div>
 

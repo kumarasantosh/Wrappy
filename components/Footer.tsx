@@ -88,11 +88,14 @@ export default function Footer() {
         {/* Mobile: Minimal Layout */}
         <div className="md:hidden">
           <div className="flex flex-col items-center text-center mb-6">
-            <img
-              src="/images/logo2.png"
-              alt="wrappy"
-              className="h-12 w-auto object-contain mb-4"
-            />
+            <div className="mb-4">
+              <span className="font-serif text-3xl font-bold tracking-tight text-wrappy-black">
+                Wrapz <span className="text-wrappy-red">N</span> Fryz
+              </span>
+              <p className="text-[9px] font-semibold tracking-[0.18em] uppercase text-wrappy-black/60 mt-1">
+                Fresh Wraps. Loaded Fryz.
+              </p>
+            </div>
             <div className="flex gap-4 mb-4">
               <a
                 href="#"
@@ -146,13 +149,14 @@ export default function Footer() {
         {/* Desktop: Full Layout */}
         <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Logo and Brand */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 text-center">
             <div className="mb-6">
-              <img
-                src="/images/logo2.png"
-                alt="wrappy"
-                className="h-16 md:h-20 w-auto object-contain"
-              />
+              <span className="font-serif text-4xl font-bold tracking-tight text-wrappy-black">
+                Wrapz <span className="text-wrappy-red">N</span> Fryz
+              </span>
+              <p className="text-[9px] font-semibold tracking-[0.18em] uppercase text-wrappy-black/60 mt-1">
+                Fresh Wraps. Loaded Fryz.
+              </p>
             </div>
             <p className="text-gray-600 text-sm leading-relaxed">
               Fresh wraps, crispy fries, thick shakes & chill drinks. Where
