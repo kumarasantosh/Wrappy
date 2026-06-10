@@ -73,7 +73,7 @@ export default function FryzShowcase() {
       className="relative bg-white py-12 md:py-16 px-4 sm:px-6 lg:px-8"
     >
       <div
-        className="relative overflow-hidden rounded-3xl md:rounded-[2.5rem] py-14 md:py-20"
+        className="relative overflow-hidden rounded-3xl md:rounded-[2.5rem] py-8 md:py-12 lg:py-6"
         style={{
           background:
             "linear-gradient(135deg, #e0ab3c 0%, #d49b30 60%, #ca9028 100%)",
