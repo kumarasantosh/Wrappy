@@ -4,7 +4,7 @@ import HomeClient from "./home-client";
 export const metadata: Metadata = {
   title: "Home - Fresh Wraps & Fries in Hyderabad | wrappy",
   description:
-    "Fresh wraps, crispy fries, thick shakes & chill drinks in Hyderabad. wrappy - where street food meets bold flavour. Visit us at Shop 5A, Plot 192, Addagutta Society, Kukatpally, Hyderabad. Call 7799602222 to order now!",
+    "Fresh wraps, crispy fries, thick shakes & chill drinks in Hyderabad. Wrapz N Fryz - where street food meets bold flavour. Visit us at Shop 5A, Plot 192, Addagutta Society, Kukatpally, Hyderabad. Call 7799602222 to order now!",
   keywords: [
     "wrappy",
     "wraps",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "wrappy - Fresh Wraps & Fries in Hyderabad",
     description:
-      "Fresh wraps, crispy fries, thick shakes & chill drinks. wrappy - where street food meets bold flavour. Located in Kukatpally, Hyderabad.",
+      "Fresh wraps, crispy fries, thick shakes & chill drinks. Wrapz N Fryz - where street food meets bold flavour. Located in Kukatpally, Hyderabad.",
     url: "https://wrappy.com",
     type: "website",
     locale: "en_IN",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "wrappy - Fresh Wraps & Fries in Hyderabad",
     description:
-      "Fresh wraps, crispy fries, thick shakes & chill drinks. wrappy - where street food meets bold flavour.",
+      "Fresh wraps, crispy fries, thick shakes & chill drinks. Wrapz N Fryz - where street food meets bold flavour.",
     images: ["/images/logo.png"],
     creator: "@heywrappy",
   },

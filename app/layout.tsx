@@ -12,11 +12,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: {
     default:
-      "wrappy - Wrap It. Bite It. Love It. | Fresh Wraps & Fries in Hyderabad",
-    template: "%s | wrappy",
+      "Wrapz N Fryz - Wrap It. Bite It. Love It. | Fresh Wraps & Fries in Hyderabad",
+    template: "%s | Wrapz N Fryz",
   },
   description:
-    "Fresh wraps, crispy fries, thick shakes & chill drinks in Hyderabad. wrappy - where street food meets bold flavour. Visit us at Shop 5A, Plot 192, Addagutta Society, Kukatpally, Hyderabad. Call 7799602222 to order now!",
+    "Fresh wraps, crispy fries, thick shakes & chill drinks in Hyderabad. Wrapz N Fryz - where street food meets bold flavour. Visit us at Shop 5A, Plot 192, Addagutta Society, Kukatpally, Hyderabad. Call 7799602222 to order now!",
   keywords: [
     "wrappy",
     "wraps",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title:
       "wrappy - Wrap It. Bite It. Love It. | Fresh Wraps & Fries in Hyderabad",
     description:
-      "Fresh wraps, crispy fries, thick shakes & chill drinks. wrappy - where street food meets bold flavour. Located in Kukatpally, Hyderabad.",
+      "Fresh wraps, crispy fries, thick shakes & chill drinks. Wrapz N Fryz - where street food meets bold flavour. Located in Kukatpally, Hyderabad.",
     images: [
       {
         url: "/images/logo.png",
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "wrappy - Wrap It. Bite It. Love It.",
     description:
-      "Fresh wraps, crispy fries, thick shakes & chill drinks. wrappy - where street food meets bold flavour.",
+      "Fresh wraps, crispy fries, thick shakes & chill drinks. Wrapz N Fryz - where street food meets bold flavour.",
     images: ["/images/logo.png"],
   },
   robots: {
@@ -99,7 +99,7 @@ export default function RootLayout({
     "@type": "Restaurant",
     name: "wrappy",
     description:
-      "Fresh wraps, crispy fries, thick shakes & chill drinks. wrappy - where street food meets bold flavour.",
+      "Fresh wraps, crispy fries, thick shakes & chill drinks. Wrapz N Fryz - where street food meets bold flavour.",
     url: "https://wrappy.com",
     telephone: "+917799602222",
     address: {

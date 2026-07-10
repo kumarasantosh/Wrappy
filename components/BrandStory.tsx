@@ -71,9 +71,9 @@ export default function BrandStory() {
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div ref={textRef} className="text-wrappy-cream">
           <p className="text-3xl md:text-5xl font-bold mb-8 font-display">
-            wrappy is where street food meets bold flavour.
+            Wrapz N Fryz is where street food meets bold flavour.
           </p>
-          <p className="text-2xl md:text-4xl font-light">
+          <p className="text-2xl m d:text-4xl font-light">
             Freshly wrapped. Loudly loved.
           </p>
         </div>
