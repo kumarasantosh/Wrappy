@@ -64,6 +64,12 @@ export default function Navigation() {
                 Menu
               </a>
               <a
+                href="/stores"
+                className="text-wrappy-black hover:text-wrappy-red transition-colors"
+              >
+                Our Stores
+              </a>
+              <a
                 href="/franchise"
                 className="text-wrappy-black hover:text-wrappy-red transition-colors"
               >
@@ -119,6 +125,13 @@ export default function Navigation() {
             onClick={() => setIsMenuOpen(false)}
           >
             Menu
+          </a>
+          <a
+            href="/stores"
+            className="menu-item text-4xl font-bold text-wrappy-cream hover:text-wrappy-red transition-colors"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Our Stores
           </a>
           <a
             href="/franchise"

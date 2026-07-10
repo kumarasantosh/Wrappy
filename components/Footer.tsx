@@ -189,6 +189,12 @@ export default function Footer() {
                 Build Your Wrap
               </Link>
               <Link
+                href="/stores"
+                className="block text-gray-600 hover:text-wrappy-red transition-colors text-sm"
+              >
+                Our Stores
+              </Link>
+              <Link
                 href="/launch"
                 className="block text-gray-600 hover:text-wrappy-red transition-colors text-sm"
               >
