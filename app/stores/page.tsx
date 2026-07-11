@@ -16,7 +16,7 @@ const stores = [
     area: "JNTU, Kukatpally Housing Board Colony",
     city: "Hyderabad, Telangana",
     hours: "11:00 AM – 11:00 PM",
-    phone: "7799602222",
+    phone: "9177599393",
     mapsQuery: "wrappy JNTU Hyderabad",
     accent: "bg-wrappy-red",
   },

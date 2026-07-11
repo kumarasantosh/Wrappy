@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s | Wrapz N Fryz",
   },
   description:
-    "Fresh wraps, crispy fries, thick shakes & chill drinks in Hyderabad. Wrapz N Fryz - where street food meets bold flavour. Visit us at Shop 5A, Plot 192, Addagutta Society, Kukatpally, Hyderabad. Call 7799602222 to order now!",
+    "Fresh wraps, crispy fries, thick shakes & chill drinks in Hyderabad. Wrapz N Fryz - where street food meets bold flavour. Visit us at Shop 5A, Plot 192, Addagutta Society, Kukatpally, Hyderabad. Call 9177599393 to order now!",
   keywords: [
     "wrappy",
     "wraps",
@@ -101,7 +101,7 @@ export default function RootLayout({
     description:
       "Fresh wraps, crispy fries, thick shakes & chill drinks. Wrapz N Fryz - where street food meets bold flavour.",
     url: "https://wrappy.com",
-    telephone: "+917799602222",
+    telephone: "+919177599393",
     address: {
       "@type": "PostalAddress",
       streetAddress:

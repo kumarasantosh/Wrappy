@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Our Stores - Find a wrappy Near You",
   description:
-    "Visit wrappy at JNTU, KPHB, or Banjara Hills in Hyderabad. Fresh wraps, crispy fries, thick shakes & chill drinks. Call 7799602222.",
+    "Visit wrappy at JNTU, KPHB, or Banjara Hills in Hyderabad. Fresh wraps, crispy fries, thick shakes & chill drinks. Call 9177599393.",
   keywords: [
     "wrappy stores",
     "wrappy locations",

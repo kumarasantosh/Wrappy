@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Grand Opening - wrappy is Now Open in Hyderabad",
   description:
-    "wrappy is officially open! Join us for our grand opening celebration. Fresh wraps, crispy fries, and bold flavours await you at Shop 5A, Plot 192, Addagutta Society, Kukatpally, Hyderabad. Call us at 7799602222.",
+    "wrappy is officially open! Join us for our grand opening celebration. Fresh wraps, crispy fries, and bold flavours await you at Shop 5A, Plot 192, Addagutta Society, Kukatpally, Hyderabad. Call us at 9177599393.",
   keywords: [
     "wrappy opening",
     "wrappy launch",

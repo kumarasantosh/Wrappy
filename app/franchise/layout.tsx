@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Franchise Opportunities - Own a wrappy Franchise",
   description:
-    "Join the wrappy family! Own a franchise and bring fresh wraps, crispy fries, and bold flavours to your community. Get comprehensive support, training, and marketing assistance. Contact us at 7799602222.",
+    "Join the wrappy family! Own a franchise and bring fresh wraps, crispy fries, and bold flavours to your community. Get comprehensive support, training, and marketing assistance. Contact us at 9177599393.",
   keywords: [
     "wrappy franchise",
     "franchise opportunities",

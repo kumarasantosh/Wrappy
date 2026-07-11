@@ -4,7 +4,7 @@ import HomeClient from "./home-client";
 export const metadata: Metadata = {
   title: "Home - Fresh Wraps & Fries in Hyderabad | wrappy",
   description:
-    "Fresh wraps, crispy fries, thick shakes & chill drinks in Hyderabad. Wrapz N Fryz - where street food meets bold flavour. Visit us at Shop 5A, Plot 192, Addagutta Society, Kukatpally, Hyderabad. Call 7799602222 to order now!",
+    "Fresh wraps, crispy fries, thick shakes & chill drinks in Hyderabad. Wrapz N Fryz - where street food meets bold flavour. Visit us at Shop 5A, Plot 192, Addagutta Society, Kukatpally, Hyderabad. Call 9177599393 to order now!",
   keywords: [
     "wrappy",
     "wraps",
