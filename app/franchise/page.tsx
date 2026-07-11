@@ -449,13 +449,13 @@ export default function FranchisePage() {
                     href="tel:+1800wrappy"
                     className="block text-wrappy-black hover:text-wrappy-red transition-colors font-bold underline"
                   >
-                    1-800-wrappy
+                    +91 83284 37097
                   </a>
                   <a
                     href="tel:+1234567890"
                     className="block text-wrappy-black hover:text-wrappy-red transition-colors font-bold underline"
                   >
-                    +1 (234) 567-8900
+                    9177599393
                   </a>
                 </div>
               </div>
