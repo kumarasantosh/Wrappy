@@ -184,7 +184,7 @@ export default function WrapperNet({ tier }: { tier: Tier }) {
           >
             Exciting news
           </p>
-          <div className="flex items-center justify-center gap-3 flex-wrap">
+          <div className="flex flex-col items-center justify-center gap-2">
             <img
               src="/images/logo2.jpeg"
               alt="Wrappy logo"
