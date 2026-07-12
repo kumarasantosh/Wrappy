@@ -140,15 +140,13 @@ export default function WrapperNet({ tier }: { tier: Tier }) {
           className="text-2xl font-extrabold tracking-tight sm:text-3xl"
           style={{ color: "var(--go-ink)" }}
         >
-          A new Store opens
+          Now proudly serving the
           <br />
-          in Banjara Hills.
+          Banjara Hills neighbourhood.
         </h2>
         <p className="mt-3 max-w-md text-sm leading-relaxed opacity-80" style={{ color: "var(--go-ink)" }}>
-          Signature wraps, loaded fries and thickshakes — rolled to order,
-          wrapped hot, and handed over the store while you watch. Your
-          neighbourhood just got a new favourite.
-        </p>
+          Experience signature wraps, loaded fries, and handcrafted thickshakes—prepared fresh to order, wrapped hot, and served with care.
+          Welcome to your new go-to destination for great food.        </p>
         <dl className="mt-6 flex gap-3 text-center">
           {[
             ["15 JUL", "doors open"],
