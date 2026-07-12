@@ -169,9 +169,69 @@ export default function WrapperNet({ tier }: { tier: Tier }) {
         </dl>
       </FoldPanel>
 
-      <FoldPanel hinge="left" index={3} label="THE WRAPZ" animate={animate}>
+      <FoldPanel hinge="left" index={3} label="REBRAND" animate={animate}>
+        <div
+          className="rounded-lg px-4 py-6 sm:px-6 sm:py-8 text-center -mx-3 -my-4 sm:-mx-5 sm:-my-6"
+          style={{
+            background: "#000",
+            border: "1px solid rgba(255,255,255,0.1)",
+          }}
+        >
+          {/* Announcement: logo + "is now" */}
+          <p
+            className="text-[10px] uppercase tracking-[0.35em] mb-4"
+            style={{ color: "rgba(255,255,255,0.5)" }}
+          >
+            Exciting news
+          </p>
+          <div className="flex items-center justify-center gap-3 flex-wrap">
+            <img
+              src="/images/logo2.jpeg"
+              alt="Wrappy logo"
+              style={{
+                height: "40px",
+                width: "auto",
+                filter: "invert(1)",
+              }}
+            />
+            <span
+              className="text-2xl font-extrabold tracking-tight sm:text-3xl"
+              style={{ color: "#fff" }}
+            >
+              is now
+            </span>
+          </div>
+          <h2
+            className="text-3xl font-extrabold tracking-tight sm:text-4xl mt-2"
+            style={{ color: "#fff" }}
+          >
+            Wrapz{" "}
+            <span style={{ color: "#ff1e1e" }}>N</span>
+            {" "}Fryz
+          </h2>
+
+          {/* Divider */}
+          <div
+            className="mx-auto my-5"
+            style={{
+              width: "48px",
+              height: "2px",
+              background: "linear-gradient(90deg, transparent, #ff1e1e, transparent)",
+            }}
+          />
+
+          <p
+            className="text-sm leading-relaxed italic"
+            style={{ color: "rgba(255,255,255,0.65)" }}
+          >
+            Same great taste, bold new identity.
+          </p>
+        </div>
+      </FoldPanel>
+
+      <FoldPanel hinge="right" index={4} label="THE WRAPZ" animate={animate}>
         <h2 className="font-serif text-2xl font-bold sm:text-3xl" style={{ color: "var(--go-ink)" }}>
-          The Wrap<span className="text-wrappy-red">z</span>
+          Signature Wrap<span className="text-wrappy-red">z</span>
         </h2>
         <p className="mt-1 text-xs opacity-70" style={{ color: "var(--go-ink)" }}>
           Rolled tight, grilled hot, wrapped to go — peel the packet.
@@ -179,21 +239,21 @@ export default function WrapperNet({ tier }: { tier: Tier }) {
         <MenuPackets tier={tier} items={WRAP_FEATURE} single />
       </FoldPanel>
 
-      <FoldPanel hinge="right" index={4} label="THE FRYZ" animate={animate}>
+      <FoldPanel hinge="left" index={5} label="THE FRYZ" animate={animate}>
         <h2 className="font-serif text-2xl font-bold sm:text-3xl" style={{ color: "var(--go-ink)" }}>
-          The Fry<span className="text-wrappy-red">z</span>
+          Try Our Dutch Style Fry<span className="text-wrappy-red">z</span>
         </h2>
         <p className="mt-1 text-xs opacity-70" style={{ color: "var(--go-ink)" }}>
-          Loaded, spiced, and not built for sharing — peel the packet.
+          Pick your favorite seasonings, sauce and dive into crispy Dutch Style Fries!
         </p>
         <MenuPackets tier={tier} items={FRY_FEATURE} single />
       </FoldPanel>
 
-      <FoldPanel hinge="left" index={5} label="SCRATCH HERE" animate={animate}>
+      <FoldPanel hinge="right" index={6} label="SCRATCH HERE" animate={animate}>
         <ScratchOffer tier={tier} />
       </FoldPanel>
 
-      <FoldPanel hinge="top" index={6} label="LAST FOLD" animate={animate}>
+      <FoldPanel hinge="top" index={7} label="LAST FOLD" animate={animate}>
         <h2 className="text-2xl font-extrabold sm:text-3xl" style={{ color: "var(--go-ink)" }}>
           Doors open 15 July.
           <br />
@@ -226,20 +286,39 @@ export default function WrapperNet({ tier }: { tier: Tier }) {
           </p>
         </div>
 
+        {/* Map Preview */}
+        <div 
+          className="mt-4 overflow-hidden rounded-sm border border-dashed h-[180px] w-full"
+          style={{ borderColor: "var(--go-ink)" }}
+        >
+          <iframe
+            src="https://maps.google.com/maps?hl=en&q=Wrapz%20N%20Fryz%20Banjara%20Hills%20Hyderabad&t=&z=15&ie=UTF8&iwloc=B&output=embed"
+            width="100%"
+            height="100%"
+            style={{ border: 0, filter: "grayscale(1) contrast(1.1) invert(0.05)" }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Wrapz N Fryz Banjara Hills Location Map"
+          />
+        </div>
+
         <div className="mt-4 space-y-2 text-sm" style={{ color: "var(--go-ink)" }}>
           <p className="flex items-center gap-2">
-            <span aria-hidden="true">◴</span> Open daily · 11:00 – 23:00
+            <span aria-hidden="true">◴</span> Open daily · 11:00 – 24:00
           </p>
           <p className="flex items-center gap-2">
             <span aria-hidden="true">⌖</span> More neighbourhoods coming soon
           </p>
         </div>
         <a
-          href="https://wrapznfryz.com/stores"
+          href="https://www.google.com/maps/search/?api=1&query=Wrapz%20N%20Fryz%20Banjara%20Hills%20Hyderabad"
+          target="_blank"
+          rel="noopener noreferrer"
           className="mt-7 inline-flex min-h-[48px] items-center justify-center rounded-full px-8 text-sm font-bold tracking-wide"
           style={{ background: "var(--go-ember-red)", color: "var(--go-cream)" }}
         >
-          Find our store →
+          Open in Google Maps →
         </a>
       </FoldPanel>
     </div>

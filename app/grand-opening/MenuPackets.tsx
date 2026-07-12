@@ -147,9 +147,6 @@ function Packet({
               <p className="text-[10px] uppercase tracking-[0.2em] opacity-60" style={{ color: "#2c2c34" }}>
                 {item.kind}
               </p>
-              <p className="text-sm font-extrabold leading-tight" style={{ color: "#1e1e26" }}>
-                {item.name}
-              </p>
               <p className="mt-1 text-[10px] tracking-widest opacity-60" style={{ color: "#2c2c34" }}>
                 TAP TO PEEL ▾
               </p>

@@ -185,10 +185,12 @@ interface Props {
 export default function FoilHero({ warmth, onTorn }: Props) {
   const mountRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const confettiRef = useRef<HTMLCanvasElement>(null);
   const [torn, setTorn] = useState(false);
   const [gone, setGone] = useState(false);
   const [assembled, setAssembled] = useState(false);
   const [dispersed, setDispersed] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
   const addDebris = useDebris();
   const warmRef = useRef(warmth);
   warmRef.current = warmth;
@@ -198,6 +200,12 @@ export default function FoilHero({ warmth, onTorn }: Props) {
   setTornRef.current = { setTorn, setGone, setAssembled, setDispersed };
   const debrisRef = useRef(addDebris);
   debrisRef.current = addDebris;
+
+  useEffect(() => {
+    if (dispersed) {
+      setShowConfetti(true);
+    }
+  }, [dispersed]);
 
   useEffect(() => {
     const mount = mountRef.current;
@@ -921,12 +929,104 @@ export default function FoilHero({ warmth, onTorn }: Props) {
     };
   }, []);
 
+  /* ---------- confetti on "You're invited" reveal ---------- */
+  useEffect(() => {
+    if (!showConfetti || !confettiRef.current || !mountRef.current) return;
+    const canvas = confettiRef.current;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const width = mountRef.current.clientWidth;
+    const height = mountRef.current.clientHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+    const types: Array<"red" | "gold" | "silver"> = ["red", "gold", "silver"];
+    const pieces: Array<{
+      x: number; y: number; r: number; d: number;
+      colorType: "red" | "gold" | "silver"; tilt: number;
+      tiltInc: number; tiltAngle: number;
+    }> = [];
+
+    for (let i = 0; i < 150; i++) {
+      pieces.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height - canvas.height,
+        r: Math.random() * 6 + 4,
+        d: Math.random() * pieces.length,
+        colorType: types[Math.floor(Math.random() * types.length)],
+        tilt: Math.floor(Math.random() * 10) - 10,
+        tiltInc: Math.random() * 0.07 + 0.05,
+        tiltAngle: 0,
+      });
+    }
+
+    let raf = 0;
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pieces.forEach((c, i) => {
+        // Calculate metallic shimmer factor (0 to 1) based on rotation
+        const shimmer = Math.abs(Math.sin(c.tiltAngle));
+        let strokeStyle = "";
+
+        if (c.colorType === "gold") {
+          // Metallic Gold: Shimmers between deep gold (rgb(180, 135, 20)) and warm rich gold (rgb(235, 195, 45))
+          const r = Math.floor(180 + 55 * shimmer);
+          const g = Math.floor(135 + 60 * shimmer);
+          const b = Math.floor(20 + 25 * shimmer);
+          strokeStyle = `rgb(${r}, ${g}, ${b})`;
+        } else if (c.colorType === "silver") {
+          // Metallic Silver: Shimmers between deep steel (rgb(115, 115, 115)) and classic silver (rgb(195, 195, 195)) to prevent appearing white
+          const val = Math.floor(115 + 80 * shimmer);
+          strokeStyle = `rgb(${val}, ${val}, ${val})`;
+        } else {
+          // Brand Red: Shimmers between deep crimson (rgb(170, 15, 15)) and bright red (rgb(240, 35, 35))
+          const r = Math.floor(170 + 70 * shimmer);
+          const g = Math.floor(15 + 20 * shimmer);
+          const b = Math.floor(15 + 20 * shimmer);
+          strokeStyle = `rgb(${r}, ${g}, ${b})`;
+        }
+
+        ctx.beginPath();
+        ctx.lineWidth = c.r / 2;
+        ctx.strokeStyle = strokeStyle;
+        ctx.moveTo(c.x + c.tilt + c.r, c.y);
+        ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r);
+        ctx.stroke();
+
+        c.tiltAngle += c.tiltInc;
+        c.y += (Math.cos(c.d) + 3 + c.r / 2) / 2;
+        c.tilt = Math.sin(c.tiltAngle - i / 3) * 15;
+        if (c.y > canvas.height) {
+          pieces[i] = { ...c, x: Math.random() * canvas.width, y: -20, tilt: Math.floor(Math.random() * 10) - 10, tiltAngle: 0 };
+        }
+      });
+      raf = requestAnimationFrame(animate);
+    };
+    animate();
+
+    const timer = setTimeout(() => {
+      cancelAnimationFrame(raf);
+      setShowConfetti(false);
+    }, 8000);
+    return () => { cancelAnimationFrame(raf); clearTimeout(timer); };
+  }, [showConfetti]);
+
   return (
     <section
       ref={mountRef}
       className="go-hero relative flex w-full items-center justify-center overflow-hidden"
       aria-label="WrapzNfryz grand opening"
     >
+      {/* confetti burst on "You're invited" */}
+      {showConfetti && (
+        <canvas
+          ref={confettiRef}
+          className="pointer-events-none absolute inset-0 z-50"
+          style={{ width: "100%", height: "100%" }}
+          aria-hidden="true"
+        />
+      )}
       {/* content revealed behind the silk */}
       <div className="pointer-events-none absolute inset-0">
         <h1 className="sr-only">WrapzNfryz — Grand Opening</h1>
@@ -963,7 +1063,7 @@ export default function FoilHero({ warmth, onTorn }: Props) {
             GRAND OPENING
           </span>
           {/* headline-scale, like the shard text it replaces */}
-          <span className="block font-serif text-5xl font-bold leading-[0.95] tracking-tight sm:text-8xl lg:text-[9.5rem]">
+          <span className="block font-serif text-7xl font-bold leading-[0.95] tracking-tight sm:text-8xl lg:text-[9.5rem]">
             You&apos;re
             <br />
             invited.
