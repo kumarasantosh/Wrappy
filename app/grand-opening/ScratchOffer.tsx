@@ -117,7 +117,7 @@ export default function ScratchOffer({ tier }: { tier: Tier }) {
       </h2>
       <p className="mt-1 text-xs opacity-70" style={{ color: "var(--go-ink)" }}>
         {interactive
-          ? "Scratch it off, screenshot the code, bring it on opening day."
+          ? "Scratch it off."
           : "Your opening-week offer:"}
       </p>
 
@@ -129,22 +129,15 @@ export default function ScratchOffer({ tier }: { tier: Tier }) {
         {/* the prize */}
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 px-4 text-center">
           <p className="text-[10px] uppercase tracking-[0.25em]" style={{ color: "var(--go-ember)" }}>
-            Combos · opening week
+            Combos and more · opening week
           </p>
           <p
             className="font-mono text-2xl font-extrabold tracking-[0.2em]"
             style={{ color: "var(--go-cream)" }}
           >
-            {CODE}
+            ₹299
           </p>
-          <button
-            type="button"
-            onClick={copy}
-            className="mt-1 min-h-[44px] rounded-full px-5 text-xs font-bold"
-            style={{ background: "var(--go-ember-red)", color: "var(--go-cream)" }}
-          >
-            {copied ? "Copied ✓" : "Copy code"}
-          </button>
+
         </div>
 
         {/* the foil coat */}
