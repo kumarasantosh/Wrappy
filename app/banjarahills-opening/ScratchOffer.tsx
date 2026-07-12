@@ -125,7 +125,7 @@ export default function ScratchOffer({ tier }: { tier: Tier }) {
       </h2>
       <p className="mt-1 text-xs opacity-70" style={{ color: "var(--go-ink)" }}>
         {interactive
-          ? "Scratch it off."
+          ? "Scratch it off to reveal."
           : "Your opening-week offer:"}
       </p>
 

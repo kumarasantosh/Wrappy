@@ -150,7 +150,7 @@ export default function WrapperNet({ tier }: { tier: Tier }) {
         <dl className="mt-6 flex gap-3 text-center">
           {[
             ["15 JUL", "doors open"],
-            ["25+", "things to eat"],
+            ["94+", "things to eat"],
             ["11–23", "open daily"],
           ].map(([n, l]) => (
             <div
