@@ -148,10 +148,12 @@ const SHARD_FRAG = /* glsl */ `
   uniform float uWarm;
   uniform float uTime;
   uniform float uLogoFade;
+  uniform float uHeadFade;
   float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
   void main() {
-    /* once assembled, logo shards hand over to the crisp DOM lockup */
-    float alpha = vKind > 0.5 ? 1.0 - uLogoFade : 1.0;
+    /* logo shards hand over to the crisp DOM lockup; headline shards
+       scatter + fade on the second scroll */
+    float alpha = vKind > 0.5 ? 1.0 - uLogoFade : 1.0 - uHeadFade;
     if (alpha < 0.02) discard;
     vec2 q = gl_PointCoord - 0.5;
     float ang = vSeed * 6.28318;
@@ -186,13 +188,14 @@ export default function FoilHero({ warmth, onTorn }: Props) {
   const [torn, setTorn] = useState(false);
   const [gone, setGone] = useState(false);
   const [assembled, setAssembled] = useState(false);
+  const [dispersed, setDispersed] = useState(false);
   const addDebris = useDebris();
   const warmRef = useRef(warmth);
   warmRef.current = warmth;
   const tornRef = useRef(onTorn);
   tornRef.current = onTorn;
-  const setTornRef = useRef({ setTorn, setGone, setAssembled });
-  setTornRef.current = { setTorn, setGone, setAssembled };
+  const setTornRef = useRef({ setTorn, setGone, setAssembled, setDispersed });
+  setTornRef.current = { setTorn, setGone, setAssembled, setDispersed };
   const debrisRef = useRef(addDebris);
   debrisRef.current = addDebris;
 
@@ -512,6 +515,7 @@ export default function FoilHero({ warmth, onTorn }: Props) {
       uWarm: { value: warmRef.current },
       uTime: { value: 0 },
       uLogoFade: { value: 0 },
+      uHeadFade: { value: 0 },
     };
     const shardMat = new THREE.ShaderMaterial({
       vertexShader: SHARD_VERT,
@@ -526,6 +530,7 @@ export default function FoilHero({ warmth, onTorn }: Props) {
     scene.add(shards);
     let shardsDone = false;
     let logoFadeStart = -1;
+    let disperseStart = -1;
 
     /* ---------- interaction state ---------- */
     let tearStarted = false;
@@ -597,24 +602,73 @@ export default function FoilHero({ warmth, onTorn }: Props) {
       pointer.down = false;
       grabbed = -1;
       const speed = Math.hypot(pointer.vx, pointer.vy);
-      if (speed > 550) startTear(); // flick release tears it open
+      if (speed > 550) advance(); // flick release advances the reveal
     };
     const onCancel = () => {
-      // browser claimed the gesture for scrolling → treat as unwrap intent
       pointer.down = false;
       grabbed = -1;
-      startTear();
+      advance();
     };
     canvas.addEventListener("pointerdown", onDown);
     canvas.addEventListener("pointermove", onMove);
     canvas.addEventListener("pointerup", onUp);
     canvas.addEventListener("pointercancel", onCancel);
 
-    /* scroll intent tears the foil */
-    const onWheel = (e: WheelEvent) => { if (e.deltaY > 4) startTear(); };
-    const onScroll = () => { if (window.scrollY > 24) startTear(); };
-    window.addEventListener("wheel", onWheel, { passive: true });
-    window.addEventListener("scroll", onScroll, { passive: true });
+    /* -------- staged scroll gate --------
+       Page scroll is LOCKED while the reveal plays out:
+       scroll #1 tears the silk → logo + GRAND OPENING assemble →
+       scroll #2 blows the headline apart and brings in the invite →
+       only then does the page unlock and move. */
+    const preScrolled = window.scrollY > 60; // e.g. reload mid-page: skip gating
+    let unlocked = preScrolled;
+    if (!unlocked) document.body.style.overflow = "hidden";
+    let unlockTimer = 0;
+    const unlock = () => {
+      unlocked = true;
+      document.body.style.overflow = "";
+    };
+    const startDisperse = () => {
+      if (disperseStart >= 0 || !shardsDone) return;
+      disperseStart = clock.getElapsedTime();
+      // blow the headline shards outward like loose foil
+      for (let i = 0; i < SH_N; i++) {
+        if (kinds[i] > 0.5) continue;
+        const px = shPos[i * 3], py = shPos[i * 3 + 1];
+        const d = Math.hypot(px, py) || 1;
+        const sp = 160 + Math.random() * 380;
+        shVel[i * 2] = (px / d) * sp + (Math.random() - 0.5) * 120;
+        shVel[i * 2 + 1] = (py / d) * sp + 80 + Math.random() * 140;
+        shLocked[i] = 0;
+      }
+      setTornRef.current.setDispersed(true);
+      unlockTimer = window.setTimeout(unlock, 750);
+    };
+    const advance = () => {
+      if (!tearStarted) { startTear(); return; }
+      if (shardsDone && disperseStart < 0) startDisperse();
+      // between tear and full assembly: scroll attempts do nothing
+    };
+    const onWheel = (e: WheelEvent) => {
+      if (!unlocked) e.preventDefault();
+      if (e.deltaY > 4) advance();
+    };
+    let tsY = -1;
+    const onTouchStart = (e: TouchEvent) => { tsY = e.touches[0].clientY; };
+    const onTouchMove = (e: TouchEvent) => {
+      if (!unlocked) e.preventDefault(); // iOS ignores body overflow — block here
+      if (tsY >= 0 && tsY - e.touches[0].clientY > 46) { tsY = -1; advance(); }
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (["ArrowDown", "PageDown", " ", "End"].includes(e.key)) {
+        if (!unlocked) e.preventDefault();
+        advance();
+      }
+    };
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("keydown", onKey);
+    if (preScrolled) window.setTimeout(() => startTear(), 300);
 
     /* gyroscope tilt → gravity vector (iOS needs a user-gesture permission) */
     let gyroOn = false;
@@ -634,7 +688,7 @@ export default function FoilHero({ warmth, onTorn }: Props) {
       if (typeof DOE.requestPermission === "function") {
         DOE.requestPermission()
           .then((s) => { if (s === "granted") window.addEventListener("deviceorientation", onOrient); })
-          .catch(() => {});
+          .catch(() => { });
       } else {
         window.addEventListener("deviceorientation", onOrient);
       }
@@ -738,7 +792,23 @@ export default function FoilHero({ warmth, onTorn }: Props) {
     };
 
     const stepShards = (dt: number, t: number) => {
-      if (!tearStarted || shardsDone || SH_N === 0) return;
+      if (!tearStarted || SH_N === 0) return;
+      // disperse phase: headline shards tumble away like loose foil
+      if (disperseStart >= 0) {
+        const gone2 = t - disperseStart;
+        if (gone2 > 1.6) return;
+        for (let i = 0; i < SH_N; i++) {
+          if (kinds[i] > 0.5) continue;
+          const i3 = i * 3, i2 = i * 2;
+          shVel[i2] *= 0.995;
+          shVel[i2 + 1] -= 420 * dt;
+          shPos[i3] += shVel[i2] * dt;
+          shPos[i3 + 1] += shVel[i2 + 1] * dt;
+        }
+        shPosAttr.needsUpdate = true;
+        return;
+      }
+      if (shardsDone) return;
       const since = t - tearAt - 0.35;
       if (since < 0) return;
       let allLocked = true;
@@ -794,6 +864,9 @@ export default function FoilHero({ warmth, onTorn }: Props) {
       if (logoFadeStart >= 0) {
         shardUniforms.uLogoFade.value = Math.min(1, (t - logoFadeStart) / 0.7);
       }
+      if (disperseStart >= 0) {
+        shardUniforms.uHeadFade.value = Math.min(1, (t - disperseStart) / 0.9);
+      }
       step(dt, t);
       stepShards(dt, t);
       renderer.render(scene, camera);
@@ -835,7 +908,11 @@ export default function FoilHero({ warmth, onTorn }: Props) {
       canvas.removeEventListener("pointerup", onUp);
       canvas.removeEventListener("pointercancel", onCancel);
       window.removeEventListener("wheel", onWheel);
-      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("keydown", onKey);
+      window.clearTimeout(unlockTimer);
+      document.body.style.overflow = ""; // never leave scroll locked
       window.removeEventListener("deviceorientation", onOrient);
       window.removeEventListener("resize", onResize);
       geo.dispose(); steamGeo.dispose(); shardGeo.dispose();
@@ -858,9 +935,8 @@ export default function FoilHero({ warmth, onTorn }: Props) {
             positioned/sized to exactly match the shard-assembled lockup */}
         <div
           aria-hidden="true"
-          className={`absolute left-1/2 whitespace-nowrap font-bold leading-none transition-opacity duration-700 ${
-            assembled ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute left-1/2 whitespace-nowrap font-bold leading-none transition-opacity duration-700 ${assembled ? "opacity-100" : "opacity-0"
+            }`}
           style={{
             top: "calc(50% - var(--go-lo-cy, 240px))",
             transform: "translate(-50%, -50%)",
@@ -875,21 +951,34 @@ export default function FoilHero({ warmth, onTorn }: Props) {
         {/* the logo + GRAND OPENING both assemble from shards in the canvas;
             only the tagline lives in the DOM, below the shard text */}
         <p
-          className={`absolute left-1/2 w-full max-w-xs -translate-x-1/2 text-center text-sm tracking-widest transition-opacity duration-1000 sm:text-base ${
-            torn ? "opacity-90" : "opacity-0"
-          }`}
+          className={`absolute left-1/2 top-1/2 w-full max-w-md px-6 text-center tracking-widest transition-opacity duration-700 lg:top-[56%] lg:max-w-3xl ${dispersed ? "opacity-95" : "opacity-0"
+            }`}
           style={{
-            top: "calc(50% + min(22.5vw, 158px) + 48px)",
+            transform: "translate(-50%, -50%)",
             color: "var(--go-cream)",
-            transitionDelay: "2.2s",
+            transitionDelay: "0.45s",
           }}
         >
-          <span className="mb-2 block text-[10px] tracking-[0.5em] opacity-70">
-            NOW SERVING
+          <span className="mb-4 block text-[10px] tracking-[0.45em]" style={{ color: "var(--go-ember)" }}>
+            GRAND OPENING
           </span>
-          EVERY KITCHEN · ONE WRAPPER
-          <span className="mt-2 block text-xs opacity-70">
-            Multi-vendor ordering, unwrapped near you
+          {/* headline-scale, like the shard text it replaces */}
+          <span className="block font-serif text-5xl font-bold leading-[0.95] tracking-tight sm:text-8xl lg:text-[9.5rem]">
+            You&apos;re
+            <br />
+            invited.
+          </span>
+          {/* invitation details */}
+          <span className="mt-6 block space-y-1 tracking-normal">
+            <span className="block text-base font-bold sm:text-lg lg:text-2xl">
+              Wednesday, 15 July · from 11:00
+            </span>
+            <span className="block text-sm opacity-80 lg:text-base">
+              WrapzNfryz — Banjara Hills, Hyderabad
+            </span>
+            <span className="mt-2 block text-xs opacity-60 lg:text-sm">
+              First wraps off the grill · opening-week specials below
+            </span>
           </span>
         </p>
       </div>
@@ -904,13 +993,12 @@ export default function FoilHero({ warmth, onTorn }: Props) {
 
       {/* unwrap hint */}
       <div
-        className={`absolute bottom-8 left-1/2 -translate-x-1/2 text-center text-[11px] tracking-[0.3em] transition-opacity duration-500 ${
-          torn ? "opacity-0" : "opacity-60"
-        }`}
+        className={`absolute bottom-8 left-1/2 -translate-x-1/2 text-center text-[11px] tracking-[0.3em] transition-opacity duration-500 ${!torn || (assembled && !dispersed) ? "opacity-60" : "opacity-0"
+          }`}
         style={{ color: "var(--go-cream)" }}
         aria-hidden="true"
       >
-        NUDGE THE SILK · SCROLL TO UNVEIL
+        {torn ? "SCROLL AGAIN" : "NUDGE THE SILK · SCROLL TO UNVEIL"}
         <div className="mx-auto mt-2 h-6 w-px animate-pulse" style={{ background: "var(--go-cream)" }} />
       </div>
     </section>

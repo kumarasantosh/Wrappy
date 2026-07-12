@@ -81,9 +81,9 @@ export default function StaticHero({ tier }: { tier: Tier }) {
         OPENING
       </h1>
       <p className="mt-4 max-w-xs text-sm tracking-widest" style={{ color: "var(--go-cream)", opacity: 0.9 }}>
-        EVERY KITCHEN · ONE WRAPPER
+        GRAND OPENING · 15 JULY
         <span className="mt-2 block text-xs opacity-70">
-          Multi-vendor ordering, unwrapped near you
+          Banjara Hills, Hyderabad — doors open Wednesday
         </span>
       </p>
     </section>

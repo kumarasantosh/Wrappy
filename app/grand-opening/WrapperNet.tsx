@@ -12,8 +12,26 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import type { Tier } from "./lib";
-import MenuPackets from "./MenuPackets";
+import MenuPackets, { MenuItem } from "./MenuPackets";
 import ScratchOffer from "./ScratchOffer";
+
+const WRAP_FEATURE: MenuItem[] = [
+  {
+    name: "Smoky Tandoori Chicken",
+    kind: "Signature wrap",
+    price: "₹149",
+    img: "/Wraps/Smoky%20Tandoori%20Chicken_wrap.png",
+  },
+];
+
+const FRY_FEATURE: MenuItem[] = [
+  {
+    name: "Peri Peri Fries",
+    kind: "Loaded fries",
+    price: "₹99",
+    img: "/Fries/Peri%20Peri%20Fries.png",
+  },
+];
 
 type Hinge = "top" | "left" | "right";
 
@@ -122,20 +140,20 @@ export default function WrapperNet({ tier }: { tier: Tier }) {
           className="text-2xl font-extrabold tracking-tight sm:text-3xl"
           style={{ color: "var(--go-ink)" }}
         >
-          Every kitchen in town.
+          A new counter opens
           <br />
-          One wrapper.
+          in Banjara Hills.
         </h2>
         <p className="mt-3 max-w-md text-sm leading-relaxed opacity-80" style={{ color: "var(--go-ink)" }}>
-          WrapzNfryz is a multi-vendor food ordering platform — wraps, loaded
-          fries, shakes and more from independent kitchens, folded into a
-          single order and delivered hot.
+          Signature wraps, loaded fries and thickshakes — rolled to order,
+          wrapped hot, and handed over the counter while you watch. Your
+          neighbourhood just got a new favourite.
         </p>
         <dl className="mt-6 flex gap-3 text-center">
           {[
-            ["12+", "kitchens"],
-            ["60+", "dishes"],
-            ["25 min", "avg. delivery"],
+            ["15 JUL", "doors open"],
+            ["25+", "things to eat"],
+            ["11–23", "open daily"],
           ].map(([n, l]) => (
             <div
               key={l}
@@ -153,34 +171,69 @@ export default function WrapperNet({ tier }: { tier: Tier }) {
         </dl>
       </FoldPanel>
 
-      <FoldPanel hinge="left" index={3} label="PEEL PACKETS" animate={animate}>
-        <h2 className="text-xl font-extrabold sm:text-2xl" style={{ color: "var(--go-ink)" }}>
-          A taste of the net
+      <FoldPanel hinge="left" index={3} label="THE WRAPZ" animate={animate}>
+        <h2 className="font-serif text-2xl font-bold sm:text-3xl" style={{ color: "var(--go-ink)" }}>
+          The Wrap<span className="text-wrappy-red">z</span>
         </h2>
         <p className="mt-1 text-xs opacity-70" style={{ color: "var(--go-ink)" }}>
-          Tap a packet — it peels open right where it sits.
+          Rolled tight, grilled hot, wrapped to go — peel the packet.
         </p>
-        <MenuPackets tier={tier} />
+        <MenuPackets tier={tier} items={WRAP_FEATURE} single />
       </FoldPanel>
 
-      <FoldPanel hinge="right" index={4} label="SCRATCH HERE" animate={animate}>
+      <FoldPanel hinge="right" index={4} label="THE FRYZ" animate={animate}>
+        <h2 className="font-serif text-2xl font-bold sm:text-3xl" style={{ color: "var(--go-ink)" }}>
+          The Fry<span className="text-wrappy-red">z</span>
+        </h2>
+        <p className="mt-1 text-xs opacity-70" style={{ color: "var(--go-ink)" }}>
+          Loaded, spiced, and not built for sharing — peel the packet.
+        </p>
+        <MenuPackets tier={tier} items={FRY_FEATURE} single />
+      </FoldPanel>
+
+      <FoldPanel hinge="left" index={5} label="SCRATCH HERE" animate={animate}>
         <ScratchOffer tier={tier} />
       </FoldPanel>
 
-      <FoldPanel hinge="top" index={5} label="LAST FOLD" animate={animate}>
+      <FoldPanel hinge="top" index={6} label="LAST FOLD" animate={animate}>
         <h2 className="text-2xl font-extrabold sm:text-3xl" style={{ color: "var(--go-ink)" }}>
-          We&apos;re open. Come hungry.
+          Doors open 15 July.
+          <br />
+          Come hungry.
         </h2>
         <p className="mt-3 text-sm leading-relaxed opacity-80" style={{ color: "var(--go-ink)" }}>
-          Launch week is live — order through the app or walk in and watch the
-          kitchens work.
+          Join us on opening day — first wraps off the grill, opening-week
+          specials, and a counter worth watching. Walk in, or order ahead on
+          the website.
         </p>
-        <div className="mt-5 space-y-2 text-sm" style={{ color: "var(--go-ink)" }}>
+        {/* flagship kitchen — Banjara Hills */}
+        <div
+          className="mt-5 rounded-sm border-2 px-4 py-4"
+          style={{
+            borderColor: "var(--go-ember-red)",
+            background: "rgba(229, 72, 46, 0.08)",
+          }}
+        >
+          <p
+            className="text-[10px] uppercase tracking-[0.3em]"
+            style={{ color: "var(--go-ember-red)" }}
+          >
+            ★ Grand opening · Wed 15 July
+          </p>
+          <p className="mt-1 text-lg font-extrabold" style={{ color: "var(--go-ink)" }}>
+            Banjara Hills, Hyderabad
+          </p>
+          <p className="mt-1 text-xs opacity-75" style={{ color: "var(--go-ink)" }}>
+            Dine-in &amp; takeaway · from 11:00
+          </p>
+        </div>
+
+        <div className="mt-4 space-y-2 text-sm" style={{ color: "var(--go-ink)" }}>
           <p className="flex items-center gap-2">
             <span aria-hidden="true">◴</span> Open daily · 11:00 – 23:00
           </p>
           <p className="flex items-center gap-2">
-            <span aria-hidden="true">⌖</span> Find your nearest kitchen in the app
+            <span aria-hidden="true">⌖</span> More neighbourhoods coming soon
           </p>
         </div>
         <a
@@ -188,7 +241,7 @@ export default function WrapperNet({ tier }: { tier: Tier }) {
           className="mt-7 inline-flex min-h-[48px] items-center justify-center rounded-full px-8 text-sm font-bold tracking-wide"
           style={{ background: "var(--go-ember-red)", color: "var(--go-cream)" }}
         >
-          Browse all kitchens →
+          Find our store →
         </a>
       </FoldPanel>
     </div>

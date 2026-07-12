@@ -13,7 +13,14 @@ import { motion } from "framer-motion";
 import type { Tier } from "./lib";
 import { useDebris } from "./Debris";
 
-const ITEMS = [
+export interface MenuItem {
+  name: string;
+  kind: string;
+  price: string;
+  img: string;
+}
+
+const ITEMS: MenuItem[] = [
   {
     name: "Smoky Tandoori Chicken",
     kind: "Signature wrap",
@@ -43,9 +50,11 @@ const ITEMS = [
 function Packet({
   item,
   animate,
+  tall = false,
 }: {
-  item: (typeof ITEMS)[number];
+  item: MenuItem;
   animate: boolean;
+  tall?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const addDebris = useDebris();
@@ -71,7 +80,7 @@ function Packet({
         onClick={toggle}
         aria-expanded={open}
         aria-label={`${item.name}, ${item.price} — ${open ? "close" : "peel open"} packet`}
-        className="relative block h-52 w-full text-left"
+        className={`relative block w-full text-left ${tall ? "h-64" : "h-52"}`}
         style={{ transformStyle: "preserve-3d", minHeight: 44 }}
       >
         {/* pouch interior — revealed as the lid hinges up */}
@@ -93,12 +102,12 @@ function Packet({
               src={item.img}
               alt=""
               loading="lazy"
-              className="h-28 w-28 object-contain drop-shadow-lg"
+              className={`object-contain drop-shadow-lg ${tall ? "h-40 w-40" : "h-28 w-28"}`}
             />
-            <p className="mt-1 px-2 text-center text-[11px] font-bold leading-tight" style={{ color: "var(--go-cream)" }}>
+            <p className={`mt-1 px-2 text-center font-bold leading-tight ${tall ? "text-sm" : "text-[11px]"}`} style={{ color: "var(--go-cream)" }}>
               {item.name}
             </p>
-            <p className="text-sm font-extrabold" style={{ color: "var(--go-ember)" }}>
+            <p className={`font-extrabold ${tall ? "text-base" : "text-sm"}`} style={{ color: "var(--go-ember)" }}>
               {item.price}
             </p>
           </motion.div>
@@ -162,12 +171,20 @@ function Packet({
   );
 }
 
-export default function MenuPackets({ tier }: { tier: Tier }) {
+export default function MenuPackets({
+  tier,
+  items = ITEMS,
+  single = false,
+}: {
+  tier: Tier;
+  items?: MenuItem[];
+  single?: boolean;
+}) {
   const animate = tier !== "static";
   return (
-    <div className="mt-5 grid grid-cols-2 gap-3">
-      {ITEMS.map((item) => (
-        <Packet key={item.name} item={item} animate={animate} />
+    <div className={single ? "mx-auto mt-5 max-w-[280px]" : "mt-5 grid grid-cols-2 gap-3"}>
+      {items.map((item) => (
+        <Packet key={item.name} item={item} animate={animate} tall={single} />
       ))}
     </div>
   );

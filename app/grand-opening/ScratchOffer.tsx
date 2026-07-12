@@ -56,7 +56,7 @@ export default function ScratchOffer({ tier }: { tier: Tier }) {
     (ctx as CanvasRenderingContext2D & { letterSpacing?: string }).letterSpacing = "3px";
     ctx.fillText("SCRATCH THE FOIL", w / 2, h / 2 - 6);
     ctx.font = "500 9px system-ui, sans-serif";
-    ctx.fillText("launch-week code underneath", w / 2, h / 2 + 12);
+    ctx.fillText("opening-week code underneath", w / 2, h / 2 + 12);
   }, [interactive]);
 
   const checkProgress = useCallback(() => {
@@ -117,8 +117,8 @@ export default function ScratchOffer({ tier }: { tier: Tier }) {
       </h2>
       <p className="mt-1 text-xs opacity-70" style={{ color: "var(--go-ink)" }}>
         {interactive
-          ? "Scratch it off — the flecks land where flecks land."
-          : "Your launch-week offer:"}
+          ? "Scratch it off, screenshot the code, bring it on opening day."
+          : "Your opening-week offer:"}
       </p>
 
       <div
@@ -129,7 +129,7 @@ export default function ScratchOffer({ tier }: { tier: Tier }) {
         {/* the prize */}
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 px-4 text-center">
           <p className="text-[10px] uppercase tracking-[0.25em]" style={{ color: "var(--go-ember)" }}>
-            Buy 1 Get 1 · launch week
+            Buy 1 Get 1 · opening week
           </p>
           <p
             className="font-mono text-2xl font-extrabold tracking-[0.2em]"
@@ -171,7 +171,7 @@ export default function ScratchOffer({ tier }: { tier: Tier }) {
               color: "#26262e",
             }}
           >
-            Reveal launch-week code
+            Reveal opening-week code
           </button>
         )}
       </div>
