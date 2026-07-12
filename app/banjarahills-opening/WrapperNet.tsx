@@ -20,7 +20,7 @@ const WRAP_FEATURE: MenuItem[] = [
     name: "Smoky Tandoori Chicken",
     kind: "Signature wrap",
     price: "₹149",
-    img: "/Wraps/Smoky%20Tandoori%20Chicken_wrap.png",
+    img: "/wrap.png",
   },
 ];
 
@@ -29,7 +29,25 @@ const FRY_FEATURE: MenuItem[] = [
     name: "Peri Peri Fries",
     kind: "Loaded fries",
     price: "₹99",
-    img: "/Fries/Peri%20Peri%20Fries.png",
+    img: "/Fries/image.png",
+  },
+];
+
+const MOJITO_FEATURE: MenuItem[] = [
+  {
+    name: "Virgin Mojito",
+    kind: "Mojito and Thickshakes",
+    price: "₹99",
+    img: "/mojito.jpeg",
+  },
+];
+
+const THICKSHAKE_FEATURE: MenuItem[] = [
+  {
+    name: "Belgian Chocolate",
+    kind: "Thickshake",
+    price: "₹149",
+    img: "/Thickshakes/Belgian%20Chocolate_Thickshake.png",
   },
 ];
 
@@ -312,13 +330,13 @@ export default function WrapperNet({ tier }: { tier: Tier }) {
           </p>
         </div>
         <a
-          href="https://www.google.com/maps/search/?api=1&query=Wrapz%20N%20Fryz%20Banjara%20Hills%20Hyderabad"
+          href="https://wrapznfryz.com/stores"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-7 inline-flex min-h-[48px] items-center justify-center rounded-full px-8 text-sm font-bold tracking-wide"
           style={{ background: "var(--go-ember-red)", color: "var(--go-cream)" }}
         >
-          Open in Google Maps →
+          Visit our stores
         </a>
       </FoldPanel>
     </div>

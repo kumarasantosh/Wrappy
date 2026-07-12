@@ -37,7 +37,7 @@ const ITEMS: MenuItem[] = [
     name: "Peri Peri Fries",
     kind: "Loaded fries",
     price: "₹99",
-    img: "/Fries/Peri%20Peri%20Fries.png",
+    img: "/Fries/img1.png",
   },
   {
     name: "Thickshake",
@@ -92,7 +92,7 @@ function Packet({
           }}
         >
           <motion.div
-            className="flex h-full flex-col items-center justify-end pb-3"
+            className="flex h-full w-full flex-col items-center justify-end pb-3"
             initial={false}
             animate={open ? { y: 0, opacity: 1 } : { y: 26, opacity: 0 }}
             transition={spring}
@@ -102,11 +102,9 @@ function Packet({
               src={item.img}
               alt=""
               loading="lazy"
-              className={`object-contain drop-shadow-lg ${tall ? "h-40 w-40" : "h-28 w-28"}`}
+              className="h-full w-full object-contain drop-shadow-xl"
             />
-            <p className={`mt-1 px-2 text-center font-bold leading-tight ${tall ? "text-sm" : "text-[11px]"}`} style={{ color: "var(--go-cream)" }}>
-              {item.name}
-            </p>
+
           </motion.div>
         </div>
 
@@ -129,6 +127,8 @@ function Packet({
             style={{
               background:
                 "linear-gradient(155deg, #2c2d35 0%, #484a56 25%, #787b8f 50%, #363842 75%, #1c1d22 100%)",
+              border: "1.5px solid rgba(255, 255, 255, 0.15)", // Shiny metallic rim/border
+              boxShadow: "inset 0 0 6px rgba(0, 0, 0, 0.5)", // Dark inner shadow for depth
               backfaceVisibility: "hidden",
             }}
           >
@@ -141,10 +141,10 @@ function Packet({
               }}
             />
             <div>
-              <p className="text-[10px] uppercase tracking-[0.2em]" style={{ color: "rgba(255, 255, 255, 0.75)" }}>
+              <p className="text-[10px] uppercase tracking-[0.2em] font-bold" style={{ color: "rgba(255, 255, 255, 0.75)" }}>
                 {item.kind}
               </p>
-              <p className="mt-1 text-[10px] tracking-widest" style={{ color: "rgba(255, 255, 255, 0.55)" }}>
+              <p className="mt-1 text-[10px] tracking-widest" style={{ color: "rgba(255, 255, 255, 0.75)" }}>
                 TAP TO PEEL ▾
               </p>
             </div>
@@ -154,7 +154,7 @@ function Packet({
             className="absolute inset-0 rounded-sm"
             style={{
               background:
-                "linear-gradient(25deg, #1a1b20 0%, #3a3b45 45%, #15161b 100%)",
+                "linear-gradient(25deg, #74757f 0%, #9b9ca8 45%, #6b6c76 100%)",
               transform: "rotateX(180deg)",
               backfaceVisibility: "hidden",
             }}
