@@ -129,7 +129,7 @@ export default function ScratchOffer({ tier }: { tier: Tier }) {
         {/* the prize */}
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 px-4 text-center">
           <p className="text-[10px] uppercase tracking-[0.25em]" style={{ color: "var(--go-ember)" }}>
-            Buy 1 Get 1 · opening week
+            Combos · opening week
           </p>
           <p
             className="font-mono text-2xl font-extrabold tracking-[0.2em]"
@@ -153,9 +153,8 @@ export default function ScratchOffer({ tier }: { tier: Tier }) {
             ref={canvasRef}
             onPointerDown={scratchTo}
             onPointerMove={scratchTo}
-            className={`absolute inset-0 h-full w-full transition-opacity duration-700 ${
-              revealed ? "pointer-events-none opacity-0" : "opacity-100"
-            }`}
+            className={`absolute inset-0 h-full w-full transition-opacity duration-700 ${revealed ? "pointer-events-none opacity-0" : "opacity-100"
+              }`}
             style={{ touchAction: "none" }}
             aria-label="Scratch to reveal the discount code"
             role="img"

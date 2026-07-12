@@ -140,13 +140,13 @@ export default function WrapperNet({ tier }: { tier: Tier }) {
           className="text-2xl font-extrabold tracking-tight sm:text-3xl"
           style={{ color: "var(--go-ink)" }}
         >
-          A new counter opens
+          A new Store opens
           <br />
           in Banjara Hills.
         </h2>
         <p className="mt-3 max-w-md text-sm leading-relaxed opacity-80" style={{ color: "var(--go-ink)" }}>
           Signature wraps, loaded fries and thickshakes — rolled to order,
-          wrapped hot, and handed over the counter while you watch. Your
+          wrapped hot, and handed over the store while you watch. Your
           neighbourhood just got a new favourite.
         </p>
         <dl className="mt-6 flex gap-3 text-center">

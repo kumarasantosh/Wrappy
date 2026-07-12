@@ -971,7 +971,7 @@ export default function FoilHero({ warmth, onTorn }: Props) {
           {/* invitation details */}
           <span className="mt-6 block space-y-1 tracking-normal">
             <span className="block text-base font-bold sm:text-lg lg:text-2xl">
-              Wednesday, 15 July · from 11:00
+              Wednesday, <span style={{ color: "var(--go-ember)" }}>15</span> July · from 11:00
             </span>
             <span className="block text-sm opacity-80 lg:text-base">
               WrapzNfryz — Banjara Hills, Hyderabad
