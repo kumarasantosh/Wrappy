@@ -193,7 +193,7 @@ export default function WrapperNet({ tier }: { tier: Tier }) {
                 width: "auto",
                 filter: "invert(1)",
               }}
-            />
+            /> <br />
             <span
               className="text-2xl font-extrabold tracking-tight sm:text-3xl"
               style={{ color: "#fff" }}
@@ -287,7 +287,7 @@ export default function WrapperNet({ tier }: { tier: Tier }) {
         </div>
 
         {/* Map Preview */}
-        <div 
+        <div
           className="mt-4 overflow-hidden rounded-sm border border-dashed h-[180px] w-full"
           style={{ borderColor: "var(--go-ink)" }}
         >
@@ -295,7 +295,7 @@ export default function WrapperNet({ tier }: { tier: Tier }) {
             src="https://maps.google.com/maps?hl=en&q=Wrapz%20N%20Fryz%20Banjara%20Hills%20Hyderabad&t=&z=15&ie=UTF8&iwloc=B&output=embed"
             width="100%"
             height="100%"
-            style={{ border: 0, filter: "grayscale(1) contrast(1.1) invert(0.05)" }}
+            style={{ border: 0 }}
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
