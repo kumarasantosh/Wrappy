@@ -193,7 +193,7 @@ export default function WrapperNet({ tier }: { tier: Tier }) {
                 width: "auto",
                 filter: "invert(1)",
               }}
-            /> <br />
+            />
             <span
               className="text-2xl font-extrabold tracking-tight sm:text-3xl"
               style={{ color: "#fff" }}

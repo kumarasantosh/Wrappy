@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: "Wrapz N Fryz — Banjara Hills Opening, 15 July",
     description:
       "Banjara Hills grand opening on Wednesday, 15 July. Unwrap the reveal and scratch out your opening-week code.",
-    images: ["/images/img1.png"],
+    images: ["/images/logoa.png"],
   },
 };
 
