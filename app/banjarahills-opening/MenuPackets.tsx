@@ -107,9 +107,6 @@ function Packet({
             <p className={`mt-1 px-2 text-center font-bold leading-tight ${tall ? "text-sm" : "text-[11px]"}`} style={{ color: "var(--go-cream)" }}>
               {item.name}
             </p>
-            <p className={`font-extrabold ${tall ? "text-base" : "text-sm"}`} style={{ color: "var(--go-ember)" }}>
-              {item.price}
-            </p>
           </motion.div>
         </div>
 
@@ -131,23 +128,23 @@ function Packet({
             className="absolute inset-0 flex flex-col justify-between rounded-sm p-3"
             style={{
               background:
-                "linear-gradient(155deg, #d6d7de 0%, #adaeb9 34%, #e9eaf0 52%, #b6b7c1 70%, #cfd0d8 100%)",
+                "linear-gradient(155deg, #2c2d35 0%, #484a56 25%, #787b8f 50%, #363842 75%, #1c1d22 100%)",
               backfaceVisibility: "hidden",
             }}
           >
             {/* crimped seal */}
             <div
-              className="h-2 w-full opacity-50"
+              className="h-2 w-full opacity-40"
               style={{
                 background:
-                  "repeating-linear-gradient(90deg, #8e8f9a 0 4px, #e6e7ee 4px 8px)",
+                  "repeating-linear-gradient(90deg, #111115 0 4px, #585a66 4px 8px)",
               }}
             />
             <div>
-              <p className="text-[10px] uppercase tracking-[0.2em] opacity-60" style={{ color: "#2c2c34" }}>
+              <p className="text-[10px] uppercase tracking-[0.2em]" style={{ color: "rgba(255, 255, 255, 0.75)" }}>
                 {item.kind}
               </p>
-              <p className="mt-1 text-[10px] tracking-widest opacity-60" style={{ color: "#2c2c34" }}>
+              <p className="mt-1 text-[10px] tracking-widest" style={{ color: "rgba(255, 255, 255, 0.55)" }}>
                 TAP TO PEEL ▾
               </p>
             </div>
@@ -157,7 +154,7 @@ function Packet({
             className="absolute inset-0 rounded-sm"
             style={{
               background:
-                "linear-gradient(25deg, #74757f 0%, #9b9ca8 45%, #6b6c76 100%)",
+                "linear-gradient(25deg, #1a1b20 0%, #3a3b45 45%, #15161b 100%)",
               transform: "rotateX(180deg)",
               backfaceVisibility: "hidden",
             }}

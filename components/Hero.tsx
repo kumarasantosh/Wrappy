@@ -201,14 +201,6 @@ export default function Hero() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="text-center">
-          {/* Badge */}
-          <div className="inline-block mb-4 md:mb-6">
-            <div className="bg-wrappy-black/5 backdrop-blur-sm border border-wrappy-black/10 rounded-full px-6 py-2">
-              <span className="text-sm font-semibold text-wrappy-black/70 tracking-widest uppercase">
-                Fresh • Bold • Premium
-              </span>
-            </div>
-          </div>
 
           <h1
             ref={headlineRef}

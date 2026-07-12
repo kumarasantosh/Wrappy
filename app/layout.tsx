@@ -57,7 +57,7 @@ export const metadata: Metadata = {
       "Fresh wraps, crispy fries, thick shakes & chill drinks. Wrapz N Fryz - where street food meets bold flavour. Located in Kukatpally, Hyderabad.",
     images: [
       {
-        url: "/images/logo.png",
+        url: "/images/logoa.png",
         width: 1200,
         height: 630,
         alt: "wrappy - Fresh Wraps & Fries",
