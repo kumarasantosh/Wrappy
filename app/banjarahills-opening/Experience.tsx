@@ -38,28 +38,48 @@ export default function Experience() {
     const tryPlay = () => {
       const audio = audioRef.current;
       if (!audio || playingRef.current) return;
-      // On Android, load() must be called in a gesture before play()
-      audio.load();
-      const p = audio.play();
-      if (p) {
-        p.then(() => {
-          playingRef.current = true;
-          // Remove all listeners once playing
-          events.forEach((e) => document.removeEventListener(e, tryPlay, true));
-        }).catch(() => {
-          // Play failed — keep listeners for next gesture
-        });
+
+      // iOS Safari: resume any suspended WebKit AudioContext
+      const AC = window.AudioContext || (window as any).webkitAudioContext;
+      if (AC) {
+        try { new AC().resume().catch(() => {}); } catch (_) {}
+      }
+
+      // Set volume and ensure loaded
+      audio.volume = 0.35;
+      audio.muted = false;
+
+      const promise = audio.play();
+      if (promise !== undefined) {
+        promise
+          .then(() => {
+            playingRef.current = true;
+            cleanup();
+          })
+          .catch(() => {
+            // iOS: unlock by playing muted, then unmute
+            audio.muted = true;
+            audio.play().then(() => {
+              audio.muted = false;
+              audio.currentTime = 0;
+              playingRef.current = true;
+              cleanup();
+            }).catch(() => {
+              // Still failed — will retry on next gesture
+            });
+          });
       }
     };
 
-    const events = ["touchend", "click", "pointerup", "keydown"];
+    const events = ["touchstart", "touchend", "click", "pointerdown", "pointerup", "keydown"];
+    const cleanup = () => {
+      events.forEach((e) => document.removeEventListener(e, tryPlay, true));
+    };
     events.forEach((e) =>
       document.addEventListener(e, tryPlay, { capture: true, passive: true })
     );
 
-    return () => {
-      events.forEach((e) => document.removeEventListener(e, tryPlay, true));
-    };
+    return () => cleanup();
   }, []);
 
   // kitchen ambient grade: char base warms toward ember at meal times
