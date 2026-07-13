@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: "Wrapz N Fryz — Banjara Hills Opening, 15 July",
     description:
       "Banjara Hills grand opening on Wednesday, 15 July.Experience signature wraps, loaded fries, and handcrafted thickshakes—prepared fresh to order, wrapped hot, and served with care. Welcome to your new go-to destination.",
-    images: ["/images/logoa.png"],
+    images: ["/images/logoa.jpg"],
   },
 };
 

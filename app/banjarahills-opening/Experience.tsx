@@ -8,7 +8,7 @@
  * simulation mounts over it once the device proves it can carry it.
  */
 
-import React from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { useCapabilities, useTimeGrade } from "./lib";
 import { DebrisProvider } from "./Debris";
@@ -29,6 +29,37 @@ export default function Experience() {
   const tier = useCapabilities(); // null until mounted
   const warmth = useTimeGrade();
   const effective = tier ?? "static";
+
+  /* ---------- background music ---------- */
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [userInteracted, setUserInteracted] = useState(false);
+
+  useEffect(() => {
+    const audio = new Audio("/music.wav");
+    audio.loop = true;
+    audio.volume = 0.4;
+    audioRef.current = audio;
+    return () => { audio.pause(); audio.src = ""; };
+  }, []);
+
+  // Auto-play on first user interaction (click/scroll/touch)
+  useEffect(() => {
+    if (userInteracted) return;
+    const start = () => {
+      setUserInteracted(true);
+      if (audioRef.current) {
+        audioRef.current.play().catch(() => {});
+      }
+    };
+    window.addEventListener("click", start, { once: true });
+    window.addEventListener("touchstart", start, { once: true });
+    window.addEventListener("scroll", start, { once: true });
+    return () => {
+      window.removeEventListener("click", start);
+      window.removeEventListener("touchstart", start);
+      window.removeEventListener("scroll", start);
+    };
+  }, [userInteracted]);
 
   // kitchen ambient grade: char base warms toward ember at meal times
   const bgTop = mix("#14110e", "#241611", warmth);

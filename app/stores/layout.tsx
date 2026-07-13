@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/logoa.png",
+        url: "/images/logoa.jpg",
         width: 1200,
         height: 630,
         alt: "wrappy Store Locations",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: "Our Stores - Find a wrappy Near You",
     description:
       "Visit wrappy at JNTU, KPHB, or Banjara Hills in Hyderabad.",
-    images: ["/images/logoa.png"],
+    images: ["/images/logoa.jpg"],
   },
   alternates: {
     canonical: "/stores",
