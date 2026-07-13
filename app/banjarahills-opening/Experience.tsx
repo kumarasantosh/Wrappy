@@ -8,7 +8,7 @@
  * simulation mounts over it once the device proves it can carry it.
  */
 
-import React, { useState, useRef, useCallback, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { useCapabilities, useTimeGrade } from "./lib";
 import { DebrisProvider } from "./Debris";
@@ -31,32 +31,34 @@ export default function Experience() {
   const effective = tier ?? "static";
 
   /* ---------- background music ---------- */
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const startedRef = useRef(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const playingRef = useRef(false);
 
   useEffect(() => {
-    const startMusic = () => {
-      if (startedRef.current) return;
-      startedRef.current = true;
-
-      // Create Audio inside user gesture for Android compatibility
-      const audio = new Audio("/music.mp3");
-      audio.loop = true;
-      audio.volume = 0.4;
-      audio.setAttribute("playsinline", "true");
-      audioRef.current = audio;
-      audio.play().catch(() => {});
-
-      // Clean up all listeners once started
-      events.forEach((e) => window.removeEventListener(e, startMusic));
+    const tryPlay = () => {
+      const audio = audioRef.current;
+      if (!audio || playingRef.current) return;
+      // On Android, load() must be called in a gesture before play()
+      audio.load();
+      const p = audio.play();
+      if (p) {
+        p.then(() => {
+          playingRef.current = true;
+          // Remove all listeners once playing
+          events.forEach((e) => document.removeEventListener(e, tryPlay, true));
+        }).catch(() => {
+          // Play failed — keep listeners for next gesture
+        });
+      }
     };
 
-    const events = ["click", "touchend", "pointerdown", "scroll"] as const;
-    events.forEach((e) => window.addEventListener(e, startMusic, { once: true, passive: true }));
+    const events = ["touchend", "click", "pointerup", "keydown"];
+    events.forEach((e) =>
+      document.addEventListener(e, tryPlay, { capture: true, passive: true })
+    );
 
     return () => {
-      events.forEach((e) => window.removeEventListener(e, startMusic));
-      if (audioRef.current) { audioRef.current.pause(); audioRef.current.src = ""; }
+      events.forEach((e) => document.removeEventListener(e, tryPlay, true));
     };
   }, []);
 
@@ -71,6 +73,17 @@ export default function Experience() {
         background: `linear-gradient(180deg, ${bgTop} 0%, ${bgBottom} 100%)`,
       }}
     >
+      {/* Background music — DOM element for Android compatibility */}
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+      <audio
+        ref={audioRef}
+        src="/music.mp3"
+        loop
+        preload="auto"
+        playsInline
+        style={{ display: "none" }}
+      />
+
       {/* ember haze that breathes with the time of day */}
       <div
         aria-hidden="true"

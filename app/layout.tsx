@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://wrappy.com",
+    url: "https://WrapzNFryz.com",
     siteName: "wrappy",
     title:
       "wrappy - Wrap It. Bite It. Love It. | Fresh Wraps & Fries in Hyderabad",
