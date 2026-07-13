@@ -32,34 +32,33 @@ export default function Experience() {
 
   /* ---------- background music ---------- */
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [userInteracted, setUserInteracted] = useState(false);
+  const startedRef = useRef(false);
 
   useEffect(() => {
-    const audio = new Audio("/music.wav");
-    audio.loop = true;
-    audio.volume = 0.4;
-    audioRef.current = audio;
-    return () => { audio.pause(); audio.src = ""; };
-  }, []);
+    const startMusic = () => {
+      if (startedRef.current) return;
+      startedRef.current = true;
 
-  // Auto-play on first user interaction (click/scroll/touch)
-  useEffect(() => {
-    if (userInteracted) return;
-    const start = () => {
-      setUserInteracted(true);
-      if (audioRef.current) {
-        audioRef.current.play().catch(() => {});
-      }
+      // Create Audio inside user gesture for Android compatibility
+      const audio = new Audio("/music.wav");
+      audio.loop = true;
+      audio.volume = 0.4;
+      audio.setAttribute("playsinline", "true");
+      audioRef.current = audio;
+      audio.play().catch(() => {});
+
+      // Clean up all listeners once started
+      events.forEach((e) => window.removeEventListener(e, startMusic));
     };
-    window.addEventListener("click", start, { once: true });
-    window.addEventListener("touchstart", start, { once: true });
-    window.addEventListener("scroll", start, { once: true });
+
+    const events = ["click", "touchend", "pointerdown", "scroll"] as const;
+    events.forEach((e) => window.addEventListener(e, startMusic, { once: true, passive: true }));
+
     return () => {
-      window.removeEventListener("click", start);
-      window.removeEventListener("touchstart", start);
-      window.removeEventListener("scroll", start);
+      events.forEach((e) => window.removeEventListener(e, startMusic));
+      if (audioRef.current) { audioRef.current.pause(); audioRef.current.src = ""; }
     };
-  }, [userInteracted]);
+  }, []);
 
   // kitchen ambient grade: char base warms toward ember at meal times
   const bgTop = mix("#14110e", "#241611", warmth);
