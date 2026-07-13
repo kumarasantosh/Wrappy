@@ -40,7 +40,7 @@ export default function Experience() {
       startedRef.current = true;
 
       // Create Audio inside user gesture for Android compatibility
-      const audio = new Audio("/music.wav");
+      const audio = new Audio("/music.mp3");
       audio.loop = true;
       audio.volume = 0.4;
       audio.setAttribute("playsinline", "true");
