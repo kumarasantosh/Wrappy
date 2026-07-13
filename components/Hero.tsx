@@ -229,7 +229,7 @@ export default function Hero() {
             className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center"
           >
             <a
-              href="https://shop.wrappy.co.in/"
+              href=""
               className="group relative block bg-wrappy-black text-wrappy-cream px-7 md:px-9 py-3 md:py-4 rounded-full text-sm md:text-base font-bold overflow-hidden shadow-2xl hover:shadow-wrappy-red/20 transition-all duration-300 transform hover:scale-105"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
