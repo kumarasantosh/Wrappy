@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import HomeClient from "./home-client";
 
 export const metadata: Metadata = {
-  title: "Home - Fresh Wraps & Fries in Hyderabad | wrappy",
+  title: "Home - Fresh Wraps & Fries in Hyderabad | Wrapz N Fryz",
   description:
     "Fresh wraps, crispy fries, thick shakes & chill drinks in Hyderabad. Wrapz N Fryz - where street food meets bold flavour. Visit us at Shop 5A, Plot 192, Addagutta Society, Kukatpally, Hyderabad. Call 9177599393 to order now!",
   keywords: [
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "restaurant hyderabad",
     "wraps hyderabad",
     "fries hyderabad",
-    "wrappy restaurant",
+    "wrapz n fryz restaurant",
     "thickshakes",
     "mojitos",
     "desserts",
@@ -26,19 +26,19 @@ export const metadata: Metadata = {
     "best wraps hyderabad",
   ],
   openGraph: {
-    title: "wrappy - Fresh Wraps & Fries in Hyderabad",
+    title: "Wrapz N Fryz - Fresh Wraps & Fries in Hyderabad",
     description:
       "Fresh wraps, crispy fries, thick shakes & chill drinks. Wrapz N Fryz - where street food meets bold flavour. Located in Kukatpally, Hyderabad.",
-    url: "https://wrappy.com",
+    url: "https://wrapzNfryz.com",
     type: "website",
     locale: "en_IN",
-    siteName: "wrappy",
+    siteName: "Wrapz N Fryz",
     images: [
       {
-        url: "/images/logo.png",
+        url: "/images/logoa.png",
         width: 1200,
         height: 630,
-        alt: "wrappy - Fresh Wraps & Fries",
+        alt: "Wrapz N Fryz - Fresh Wraps & Fries",
       },
     ],
   },
