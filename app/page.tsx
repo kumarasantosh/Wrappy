@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: "Wrapz N Fryz - Fresh Wraps & Fries in Hyderabad",
     description:
       "Fresh wraps, crispy fries, thick shakes & chill drinks. Wrapz N Fryz - where street food meets bold flavour. Located in Kukatpally, Hyderabad.",
-    url: "https://wrapzNfryz.com",
+    url: "https://wrapznfryz.com",
     type: "website",
     locale: "en_IN",
     siteName: "Wrapz N Fryz",

@@ -131,7 +131,7 @@ export default function FinalCTA() {
           className="flex flex-col sm:flex-row gap-6 justify-center items-center"
         >
           <a
-            href="https://shop.wrappy.co.in/"
+            href="https://shop.wrapznfryz.co.in/"
             className="bg-wrappy-cream text-wrappy-black px-10 py-4 rounded-full text-xl font-bold hover:bg-wrappy-lime transition-colors transform hover:scale-105 text-center inline-block"
           >
             Order Now

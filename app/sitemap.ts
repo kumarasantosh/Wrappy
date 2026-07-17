@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://wrappy.com";
+  const baseUrl = "https://wrapznfryz.com";
 
   return [
     {
@@ -24,6 +24,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/launch`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/banjarahills-opening`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.7,

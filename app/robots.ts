@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: "https://wrappy.com/sitemap.xml",
+    sitemap: "https://wrapznfryz.com/sitemap.xml",
   };
 }

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     title: "Our Stores - Find a wrappy Near You",
     description:
       "Visit wrappy at JNTU, KPHB, or Banjara Hills in Hyderabad. Fresh wraps, crispy fries & bold flavours near you.",
-    url: "https://wrappy.com/stores",
+    url: "https://wrapznfryz.com/stores",
     type: "website",
     images: [
       {

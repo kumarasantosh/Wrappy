@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: "Grand Opening - wrappy is Now Open",
     description:
       "wrappy is officially open! Join us for our grand opening celebration. Fresh wraps, crispy fries, and bold flavours await you.",
-    url: "https://wrappy.com/launch",
+    url: "https://wrapznfryz.com/launch",
     type: "website",
     images: [
       {

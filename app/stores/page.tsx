@@ -234,7 +234,7 @@ export default function StoresPage() {
                     Get Directions
                   </a>
                   <a
-                    href="https://shop.wrappy.co.in/"
+                    href="https://shop.wrapznfryz.co.in/"
                     className="w-full border-2 border-black text-wrappy-black text-center text-sm font-bold uppercase tracking-wider px-6 py-3 hover:bg-wrappy-red hover:border-wrappy-red hover:text-wrappy-cream transition-colors"
                   >
                     Order Now

@@ -76,7 +76,7 @@ export default function Navigation() {
                 Franchise
               </a>
               <a
-                href="https://shop.wrappy.co.in/"
+                href="https://shop.wrapznfryz.co.in/"
                 className="bg-wrappy-black text-wrappy-cream px-6 py-2 rounded-full hover:bg-wrappy-red transition-colors"
               >
                 Order Now
@@ -89,19 +89,16 @@ export default function Navigation() {
               className="md:hidden relative w-8 h-8 flex flex-col justify-center items-center"
             >
               <span
-                className={`absolute w-6 h-0.5 bg-wrappy-black transition-all ${
-                  isMenuOpen ? "rotate-45 translate-y-0" : "-translate-y-2"
-                }`}
+                className={`absolute w-6 h-0.5 bg-wrappy-black transition-all ${isMenuOpen ? "rotate-45 translate-y-0" : "-translate-y-2"
+                  }`}
               />
               <span
-                className={`absolute w-6 h-0.5 bg-wrappy-black transition-all ${
-                  isMenuOpen ? "opacity-0" : "opacity-100"
-                }`}
+                className={`absolute w-6 h-0.5 bg-wrappy-black transition-all ${isMenuOpen ? "opacity-0" : "opacity-100"
+                  }`}
               />
               <span
-                className={`absolute w-6 h-0.5 bg-wrappy-black transition-all ${
-                  isMenuOpen ? "-rotate-45 translate-y-0" : "translate-y-2"
-                }`}
+                className={`absolute w-6 h-0.5 bg-wrappy-black transition-all ${isMenuOpen ? "-rotate-45 translate-y-0" : "translate-y-2"
+                  }`}
               />
             </button>
           </div>
@@ -111,11 +108,10 @@ export default function Navigation() {
       {/* Full Screen Menu Overlay */}
       <div
         ref={menuRef}
-        className={`fixed inset-0 z-40 bg-wrappy-black transition-opacity duration-300 ${
-          isMenuOpen
+        className={`fixed inset-0 z-40 bg-wrappy-black transition-opacity duration-300 ${isMenuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
-        }`}
+          }`}
         style={{ display: isMenuOpen ? "block" : "none" }}
       >
         <div className="flex flex-col items-center justify-center h-full space-y-8">
@@ -141,7 +137,7 @@ export default function Navigation() {
             Franchise
           </a>
           <a
-            href="https://shop.wrappy.co.in/"
+            href="https://shop.wrapznfryz.co.in/"
             className="menu-item bg-wrappy-cream text-wrappy-black px-8 py-4 rounded-full text-xl font-bold hover:bg-wrappy-red hover:text-wrappy-cream transition-colors text-center inline-block"
             onClick={() => setIsMenuOpen(false)}
           >

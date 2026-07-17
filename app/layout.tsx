@@ -42,15 +42,15 @@ export const metadata: Metadata = {
   authors: [{ name: "wrappy" }],
   creator: "wrappy",
   publisher: "wrappy",
-  metadataBase: new URL("https://WrapzNFryz.com"),
+  metadataBase: new URL("https://wrapznfryz.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://WrapzNFryz.com",
-    siteName: "wrappy",
+    url: "https://wrapznfryz.com",
+    siteName: "Wrapz N Fryz",
     title:
       "wrappy - Wrap It. Bite It. Love It. | Fresh Wraps & Fries in Hyderabad",
     description:
@@ -97,10 +97,11 @@ export default function RootLayout({
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Restaurant",
-    name: "wrappy",
+    name: "Wrapz N Fryz",
+    alternateName: "wrapznfryz",
     description:
       "Fresh wraps, crispy fries, thick shakes & chill drinks. Wrapz N Fryz - where street food meets bold flavour.",
-    url: "https://wrappy.com",
+    url: "https://wrapznfryz.com",
     telephone: "+919177599393",
     address: {
       "@type": "PostalAddress",
@@ -119,9 +120,9 @@ export default function RootLayout({
     servesCuisine:
       "Street Food, Wraps, Fast Food, Thickshakes, Mojitos, Desserts",
     priceRange: "$$",
-    image: "https://wrappy.com/images/logo.png",
+    image: "https://wrapznfryz.com/images/logo.png",
     sameAs: ["https://instagram.com/heywrappy"],
-    menu: "https://wrappy.com/#wraps",
+    menu: "https://wrapznfryz.com/#wraps",
     acceptsReservations: false,
   };
 

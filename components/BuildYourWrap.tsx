@@ -175,11 +175,10 @@ export default function BuildYourWrap() {
               {bases.map((base, index) => (
                 <div
                   key={index}
-                  className={`base-card bg-wrappy-black text-wrappy-cream rounded-2xl p-8 cursor-pointer transform-gpu ${
-                    selectedBase === base.name
+                  className={`base-card bg-wrappy-black text-wrappy-cream rounded-2xl p-8 cursor-pointer transform-gpu ${selectedBase === base.name
                       ? "selected-base ring-4 ring-wrappy-red"
                       : ""
-                  }`}
+                    }`}
                   onClick={() => handleBaseSelect(base.name)}
                   style={{ willChange: "transform" }}
                 >
@@ -203,11 +202,10 @@ export default function BuildYourWrap() {
               {styles.map((style, index) => (
                 <div
                   key={index}
-                  className={`style-card bg-wrappy-black text-wrappy-cream rounded-2xl p-8 cursor-pointer transform-gpu ${
-                    selectedStyle === style.name
+                  className={`style-card bg-wrappy-black text-wrappy-cream rounded-2xl p-8 cursor-pointer transform-gpu ${selectedStyle === style.name
                       ? "selected-style ring-4 ring-wrappy-red"
                       : ""
-                  }`}
+                    }`}
                   onClick={() => handleStyleSelect(style.name)}
                   style={{ willChange: "transform" }}
                 >
@@ -239,7 +237,7 @@ export default function BuildYourWrap() {
                   Build Another
                 </button>
                 <a
-                  href="https://shop.wrappy.co.in/"
+                  href="https://shop.wrapznfryz.co.in/"
                   className="bg-wrappy-red text-wrappy-cream px-8 py-3 rounded-full font-bold hover:bg-wrappy-orange transition-colors text-center inline-block"
                 >
                   Order Now

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: "Franchise Opportunities - Own a wrappy Franchise",
     description:
       "Join the wrappy family! Own a franchise and bring fresh wraps, crispy fries, and bold flavours to your community.",
-    url: "https://wrappy.com/franchise",
+    url: "https://wrapznfryz.com/franchise",
     type: "website",
     images: [
       {
