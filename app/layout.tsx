@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   description:
     "Fresh wraps, crispy fries, thick shakes & chill drinks in Hyderabad. Wrapz N Fryz - where street food meets bold flavour. Visit us at Shop 5A, Plot 192, Addagutta Society, Kukatpally, Hyderabad. Call 9177599393 to order now!",
   keywords: [
-    "wrappy",
+    "wrapznfryz",
     "wraps",
     "fresh wraps",
     "fries",
@@ -29,19 +29,19 @@ export const metadata: Metadata = {
     "restaurant hyderabad",
     "wraps hyderabad",
     "fries hyderabad",
-    "wrappy restaurant",
+    "wrapz n fryz restaurant",
     "thickshakes",
     "mojitos",
     "desserts",
     "ufo wraps",
-    "wrappy kukatpally",
+    "wrapz n fryz kukatpally",
     "best wraps hyderabad",
     "chicken wraps",
     "veg wraps",
   ],
-  authors: [{ name: "wrappy" }],
-  creator: "wrappy",
-  publisher: "wrappy",
+  authors: [{ name: "Wrapz N Fryz" }],
+  creator: "Wrapz N Fryz",
+  publisher: "Wrapz N Fryz",
   metadataBase: new URL("https://wrapznfryz.com"),
   alternates: {
     canonical: "/",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     url: "https://wrapznfryz.com",
     siteName: "Wrapz N Fryz",
     title:
-      "wrappy - Wrap It. Bite It. Love It. | Fresh Wraps & Fries in Hyderabad",
+      "Wrapz N Fryz - Wrap It. Bite It. Love It. | Fresh Wraps & Fries in Hyderabad",
     description:
       "Fresh wraps, crispy fries, thick shakes & chill drinks. Wrapz N Fryz - where street food meets bold flavour. Located in Kukatpally, Hyderabad.",
     images: [
@@ -60,13 +60,13 @@ export const metadata: Metadata = {
         url: "/images/logoa.jpg",
         width: 1200,
         height: 630,
-        alt: "wrappy - Fresh Wraps & Fries",
+        alt: "Wrapz N Fryz - Fresh Wraps & Fries",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "wrappy - Wrap It. Bite It. Love It.",
+    title: "Wrapz N Fryz - Wrap It. Bite It. Love It.",
     description:
       "Fresh wraps, crispy fries, thick shakes & chill drinks. Wrapz N Fryz - where street food meets bold flavour.",
     images: ["/images/logo.png"],
