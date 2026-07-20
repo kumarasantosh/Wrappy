@@ -13,7 +13,7 @@ export default function Loader({ onComplete }: LoaderProps) {
   const maskRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const texts = ["Rolling Fresh", "Wrapping Flavours", "Welcome to wrappy"];
+    const texts = ["Rolling Fresh", "Wrapping Flavours", "Welcome to Wrapz N Fryz"];
     let currentIndex = 0;
 
     const showText = (index: number) => {

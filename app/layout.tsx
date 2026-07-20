@@ -96,34 +96,72 @@ export default function RootLayout({
 }) {
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Restaurant",
-    name: "Wrapz N Fryz",
-    alternateName: "wrapznfryz",
-    description:
-      "Fresh wraps, crispy fries, thick shakes & chill drinks. Wrapz N Fryz - where street food meets bold flavour.",
-    url: "https://wrapznfryz.com",
-    telephone: "+919177599393",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress:
-        "Shop 5A, Plot 192, Addagutta Society, Jal Vayu Vihar Road",
-      addressLocality: "Kukatpally",
-      addressRegion: "Telangana",
-      postalCode: "500085",
-      addressCountry: "IN",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: "17.3850",
-      longitude: "78.4867",
-    },
-    servesCuisine:
-      "Street Food, Wraps, Fast Food, Thickshakes, Mojitos, Desserts",
-    priceRange: "$$",
-    image: "https://wrapznfryz.com/images/logo.png",
-    sameAs: ["https://instagram.com/heywrappy"],
-    menu: "https://wrapznfryz.com/#wraps",
-    acceptsReservations: false,
+    "@graph": [
+      {
+        "@type": "Restaurant",
+        name: "Wrapz N Fryz",
+        alternateName: "wrapznfryz",
+        description:
+          "Fresh wraps, crispy fries, thick shakes & chill drinks. Wrapz N Fryz - where street food meets bold flavour.",
+        url: "https://wrapznfryz.com",
+        telephone: "+919177599393",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress:
+            "Shop 5A, Plot 192, Addagutta Society, Jal Vayu Vihar Road",
+          addressLocality: "Kukatpally",
+          addressRegion: "Telangana",
+          postalCode: "500085",
+          addressCountry: "IN",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: "17.3850",
+          longitude: "78.4867",
+        },
+        servesCuisine:
+          "Street Food, Wraps, Fast Food, Thickshakes, Mojitos, Desserts",
+        priceRange: "$$",
+        image: "https://wrapznfryz.com/images/logo.png",
+        sameAs: ["https://instagram.com/heywrappy"],
+        menu: "https://wrapznfryz.com/#wraps",
+        acceptsReservations: false,
+      },
+      {
+        "@type": "WebSite",
+        name: "Wrapz N Fryz",
+        url: "https://wrapznfryz.com",
+      },
+      {
+        "@type": "ItemList",
+        itemListElement: [
+          {
+            "@type": "SiteNavigationElement",
+            position: 1,
+            name: "Menu",
+            url: "https://wrapznfryz.com/#wraps",
+          },
+          {
+            "@type": "SiteNavigationElement",
+            position: 2,
+            name: "Our Stores",
+            url: "https://wrapznfryz.com/stores",
+          },
+          {
+            "@type": "SiteNavigationElement",
+            position: 3,
+            name: "Franchise",
+            url: "https://wrapznfryz.com/franchise",
+          },
+          {
+            "@type": "SiteNavigationElement",
+            position: 4,
+            name: "Order Now",
+            url: "https://shop.wrapznfryz.co.in/",
+          },
+        ],
+      },
+    ],
   };
 
   return (
