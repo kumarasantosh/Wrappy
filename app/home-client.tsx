@@ -7,7 +7,10 @@ import Hero from '@/components/Hero'
 import SignatureWraps from '@/components/SignatureWraps'
 import FryzShowcase from '@/components/FryzShowcase'
 import WrapVariants from '@/components/WrapVariants'
+<<<<<<< HEAD
 import ShakesAndDesserts from '@/components/ShakesAndDesserts'
+=======
+>>>>>>> d6566ba (awqewewq)
 import BrandStory from '@/components/BrandStory'
 import FinalCTA from '@/components/FinalCTA'
 import Footer from '@/components/Footer'
@@ -25,8 +28,12 @@ export default function HomeClient() {
           <SignatureWraps />
           <FryzShowcase />
           <WrapVariants />
+<<<<<<< HEAD
         <ShakesAndDesserts />
         <BrandStory />
+=======
+          <BrandStory />
+>>>>>>> d6566ba (awqewewq)
           <FinalCTA />
           <Footer />
         </>
