@@ -157,7 +157,7 @@ export default function RootLayout({
             "@type": "SiteNavigationElement",
             position: 4,
             name: "Order Now",
-            url: "https://shop.wrapznfryz.co.in/",
+            url: "https://shop.wrapznfryz.com/",
           },
         ],
       },

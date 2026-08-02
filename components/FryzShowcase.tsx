@@ -118,7 +118,7 @@ export default function FryzShowcase() {
               </p>
               <a
                 ref={ctaRef}
-                href="https://shop.wrapznfryz.co.in/"
+                href="https://shop.wrapznfryz.com/"
                 className="group inline-flex items-center gap-3 bg-wrappy-cream text-wrappy-black px-8 py-4 rounded-full text-base md:text-lg font-bold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
               >
                 Build Your Fryz
