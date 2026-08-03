@@ -25,11 +25,16 @@ module.exports = {
       },
       animation: {
         float: "float 6s ease-in-out infinite",
+        marquee: "marquee 22s linear infinite",
       },
       keyframes: {
         float: {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-20px)" },
+        },
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
         },
       },
     },

@@ -1,128 +1,128 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const wraps = [
-  { name: "Classic Veggie" },
-  { name: "Butter Garlic Mushroom" },
-  { name: "Crispy Paneer" },
-  { name: "Cheesy Paneer" },
-  { name: "Crispy Chicken" },
-  { name: "Chilli Chicken" },
-  { name: "Smoky Tandoori Chicken" },
-  { name: "Fully Loaded Chicken Wrap" },
-  { name: "Zinger Chicken" },
-  { name: "BBQ Chicken" },
-  { name: "Peri Peri Chicken" },
+const MARQUEE = [
+  "WRAPS",
+  "FRIES",
+  "THICK SHAKES",
+  "MOJITOS",
+  "DESSERTS",
+  "UFO WRAPS",
+];
+
+const MENU = [
+  {
+    n: "01",
+    title: "WRAPS",
+    copy: "UFO wraps and classic rolls — marinated fillings, fresh veg, wrapped tight and grilled to order.",
+  },
+  {
+    n: "02",
+    title: "FRIES",
+    copy: "Crispy, salted, loaded or plain — the fries that give the place its name.",
+  },
+  {
+    n: "03",
+    title: "THICK SHAKES & MOJITOS",
+    copy: "Thick shakes and chill mojitos, blended alongside the fryer.",
+  },
+  {
+    n: "04",
+    title: "DESSERTS",
+    copy: "A sweet finish after the wraps and fries.",
+  },
 ];
 
 export default function SignatureWraps() {
   const sectionRef = useRef<HTMLElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const titleSectionRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const menuLabelRef = useRef<HTMLSpanElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
     const ctx = gsap.context(() => {
-      // Set initial visibility - make sure title is visible from start
-      if (titleRef.current) {
-        gsap.set(titleRef.current, { opacity: 1, y: 0 });
-      }
-      if (subtitleRef.current) {
-        gsap.set(subtitleRef.current, { opacity: 1, y: 0 });
+      if (reduced) {
+        gsap.set(
+          [
+            headingRef.current?.querySelectorAll(".crave-line") ?? [],
+            gridRef.current?.children ?? [],
+            menuLabelRef.current,
+            menuRef.current?.children ?? [],
+          ],
+          { opacity: 1, y: 0, yPercent: 0 },
+        );
+        return;
       }
 
-      // Title animation - trigger when section enters viewport (optional fade-in)
-      if (titleRef.current) {
+      // heading: line-by-line mask reveal
+      if (headingRef.current) {
         gsap.fromTo(
-          titleRef.current,
-          { opacity: 0, y: 60 },
+          headingRef.current.querySelectorAll(".crave-line"),
+          { yPercent: 115, opacity: 0 },
           {
+            yPercent: 0,
             opacity: 1,
-            y: 0,
-            duration: 1.2,
-            immediateRender: false,
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 90%",
-              end: "top 70%",
-              toggleActions: "play none none none",
-            },
+            duration: 1.1,
+            stagger: 0.12,
+            ease: "power4.out",
+            scrollTrigger: { trigger: headingRef.current, start: "top 85%" },
           },
         );
       }
 
-      if (subtitleRef.current) {
+      // grid tiles rise in
+      if (gridRef.current) {
         gsap.fromTo(
-          subtitleRef.current,
-          { opacity: 0, y: 30 },
+          gridRef.current.children,
+          { y: 60, opacity: 0 },
           {
-            opacity: 1,
             y: 0,
+            opacity: 1,
             duration: 1,
-            delay: 0.3,
-            immediateRender: false,
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 90%",
-              end: "top 70%",
-              toggleActions: "play none none none",
-            },
+            stagger: 0.1,
+            ease: "power3.out",
+            scrollTrigger: { trigger: gridRef.current, start: "top 82%" },
           },
         );
       }
 
-      // Horizontal scroll animation - items visible immediately, scroll left to reveal more
-      if (sectionRef.current && containerRef.current) {
-        const items = Array.from(
-          containerRef.current.children,
-        ) as HTMLElement[];
+      // menu rows
+      gsap.fromTo(
+        menuLabelRef.current,
+        { opacity: 0, x: -20 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          scrollTrigger: { trigger: menuLabelRef.current, start: "top 90%" },
+        },
+      );
 
-        const calculateScroll = () => {
-          if (!containerRef.current) return 0;
-
-          const containerWidth = containerRef.current.scrollWidth;
-          const viewportWidth = window.innerWidth;
-          const scrollWidth = Math.max(0, containerWidth - viewportWidth);
-
-          return scrollWidth;
-        };
-
-        const scrollWidth = calculateScroll();
-
-        if (scrollWidth > 0) {
-          // Reduce scroll distance significantly to minimize blank space
-          const scrollDistance = scrollWidth * 0.3; // Use 30% of calculated scroll width for more compact section
-
-          // Start with items visible (x: 0) and scroll left (x: -scrollWidth) to reveal more items
-          // This ensures first items are visible immediately
-          // Pin the entire section so title stays visible during scroll
-          gsap.fromTo(
-            containerRef.current,
-            { x: 0 }, // Start position (items visible)
-            {
-              x: -scrollWidth, // End position (scrolled left to show more)
-              ease: "none",
-              scrollTrigger: {
-                trigger: sectionRef.current,
-                start: "top 80px", // Account for fixed header (h-20 = 80px)
-                end: `+=${scrollDistance}`,
-                pin: true,
-                pinSpacing: true,
-                scrub: 1,
-                invalidateOnRefresh: true,
-                anticipatePin: 1,
-              },
-            },
-          );
-        }
-
-        // Items are visible immediately - no fade animation needed
+      if (menuRef.current) {
+        gsap.fromTo(
+          menuRef.current.children,
+          { opacity: 0, y: 28 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.09,
+            ease: "power3.out",
+            scrollTrigger: { trigger: menuRef.current, start: "top 85%" },
+          },
+        );
       }
     }, sectionRef);
 
@@ -130,138 +130,123 @@ export default function SignatureWraps() {
   }, []);
 
   return (
-    <section
-      id="wraps"
-      ref={sectionRef}
-      className="relative bg-wrappy-black pb-12"
-      style={{ overflow: "visible", paddingTop: "80px" }}
-    >
-      {/* Title Section - Stays visible during scroll */}
-      <div
-        ref={titleSectionRef}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 mb-4 md:mb-6"
-        style={{ position: "relative" }}
-      >
-        <div className="text-center">
-          <div className="inline-block mb-1.5">
-            <span className="text-wrappy-red text-xs font-semibold tracking-widest uppercase">
-              Our Signature Collection
-            </span>
-          </div>
-          <h2
-            ref={titleRef}
-            className="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-2 md:mb-3 font-display text-wrappy-cream"
-            style={{ opacity: 1 }}
-          >
-            Signature Wraps
-          </h2>
-          <p
-            ref={subtitleRef}
-            className="text-base md:text-lg text-wrappy-cream/70 max-w-2xl mx-auto font-light"
-            style={{ opacity: 1 }}
-          >
-            Handcrafted with fresh ingredients, wrapped to perfection
-          </p>
+    <section id="wraps" ref={sectionRef} className="relative bg-wrappy-cream">
+      {/* ==================================================== RED MARQUEE */}
+      <div className="overflow-hidden bg-wrappy-red py-3 md:py-3.5">
+        <div className="flex w-max animate-marquee will-change-transform">
+          {[0, 1].map((dup) => (
+            <div
+              key={dup}
+              aria-hidden={dup === 1}
+              className="flex w-max flex-none items-center gap-8 pr-8 font-display text-base font-extrabold tracking-[0.06em] text-wrappy-cream md:gap-10 md:pr-10 md:text-[22px]"
+            >
+              {MARQUEE.map((word) => (
+                <span key={word} className="flex items-center gap-8 md:gap-10">
+                  <span className="whitespace-nowrap">{word}</span>
+                  <span className="text-wrappy-black">◆</span>
+                </span>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Scrollable Items Section - Centered */}
-      <div
-        className="w-full relative flex items-center justify-center pb-8"
-        style={{ overflowY: "visible", minHeight: "35vh" }}
-      >
-        <div className="overflow-x-hidden w-full">
-          <div
-            ref={containerRef}
-            className="flex gap-10 overflow-y-hidden md:gap-14 lg:gap-16 xl:gap-20 will-change-transform items-center justify-center pl-6 md:pl-12 lg:pl-16 pr-6 md:pr-12 lg:pr-16"
-            style={{
-              width: "max-content",
-            }}
-          >
-            {wraps.map((wrap, index) => (
-              <WrapItem key={index} wrap={wrap} index={index} />
-            ))}
+      {/* ================================================= CRAVE IT. ROLL IT. */}
+      <div className="px-5 pb-10 pt-12 sm:px-8 md:px-12 md:pb-10 md:pt-14">
+        <h2
+          ref={headingRef}
+          className="mb-8 font-display text-[clamp(2.25rem,6.5vw,3.5rem)] font-extrabold leading-[1.04] tracking-[-0.025em] text-wrappy-black md:mb-10"
+          style={{ marginLeft: "-0.058em" }}
+        >
+          <span className="block overflow-hidden pb-[0.04em]">
+            <span className="crave-line block">CRAVE IT. ROLL IT.</span>
+          </span>
+          <span className="block overflow-hidden pb-[0.04em]">
+            <span className="crave-line block text-wrappy-red">FRY IT.</span>
+          </span>
+        </h2>
+
+        <div
+          ref={gridRef}
+          className="grid grid-cols-1 gap-[2px] bg-wrappy-black/10 sm:grid-cols-2 lg:grid-cols-4"
+        >
+          {/* 01 — wrap photo */}
+          <figure className="group relative m-0 aspect-[3/4] overflow-hidden bg-wrappy-black">
+            <Image
+              src="/Wraps/Smoky Tandoori Chicken_wrap.png"
+              alt="Smoky Tandoori Chicken wrap"
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+          </figure>
+
+          {/* 02 — black statement card */}
+          <div className="flex aspect-[3/4] flex-col justify-between bg-wrappy-black p-6 md:p-7">
+            <p className="m-0 font-display text-[clamp(1.25rem,2.4vw,1.625rem)] font-extrabold leading-[1.15] tracking-[-0.01em] text-wrappy-red">
+              Turn up the flavour, turn up the fun.
+            </p>
+            <p className="m-0 font-display text-[13px] font-extrabold tracking-[0.12em] text-wrappy-cream">
+              WRAPZ <span className="text-wrappy-red">N</span> FRYZ
+            </p>
+          </div>
+
+          {/* 03 — fries photo */}
+          <figure className="group relative m-0 aspect-[3/4] overflow-hidden bg-wrappy-black">
+            <Image
+              src="/Fries/Cheesy Loaded Fries.png"
+              alt="Cheesy loaded fries"
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+          </figure>
+
+          {/* 04 — red CTA card */}
+          <div className="flex aspect-[3/4] flex-col justify-between bg-wrappy-red p-6 md:p-7">
+            <p className="m-0 font-display text-[clamp(1.25rem,2.4vw,1.625rem)] font-extrabold leading-[1.15] tracking-[-0.01em] text-wrappy-cream">
+              Snack like you mean it.
+            </p>
+            <a
+              href="#order"
+              className="inline-flex w-fit items-center rounded-full border-2 border-wrappy-cream px-5 py-2.5 font-display text-xs font-extrabold uppercase tracking-[0.08em] text-wrappy-cream transition-colors duration-300 hover:bg-wrappy-cream hover:text-wrappy-red"
+            >
+              Order online
+            </a>
           </div>
         </div>
+      </div>
 
-        {/* Skip to Next Section Button */}
-        <button
-          onClick={() => {
-            const nextSection = document.getElementById("shakes");
-            if (nextSection) {
-              const offset = 100; // Offset for fixed navigation
-              const elementPosition = nextSection.getBoundingClientRect().top;
-              const offsetPosition =
-                elementPosition + window.pageYOffset - offset;
-              window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth",
-              });
-            }
-          }}
-          className="absolute bottom-4 right-8 md:bottom-6 md:right-12 z-50 bg-wrappy-red hover:bg-wrappy-orange text-wrappy-cream px-6 py-3 rounded-full font-bold text-sm md:text-base transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-xl hover:shadow-wrappy-red/50 flex items-center gap-2 group"
+      {/* ====================================================== ON THE MENU */}
+      <div className="px-5 pb-14 pt-2 sm:px-8 md:px-12 md:pb-16">
+        <span
+          ref={menuLabelRef}
+          className="mb-2 block font-display text-[13px] font-extrabold tracking-[0.12em] text-wrappy-red"
         >
-          <span>Skip to Shakes</span>
-          <svg
-            className="w-5 h-5 transform group-hover:translate-y-1 transition-transform"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
-        </button>
+          ON THE MENU
+        </span>
+
+        <div ref={menuRef}>
+          {MENU.map((item, i) => (
+            <div
+              key={item.n}
+              className={`grid grid-cols-[40px_minmax(0,1fr)] items-baseline gap-x-6 gap-y-3 border-t-2 border-wrappy-black/10 py-5 md:grid-cols-[60px_minmax(0,320px)_minmax(0,1fr)] md:gap-x-10 md:py-[22px] ${
+                i === MENU.length - 1 ? "border-b-2" : ""
+              }`}
+            >
+              <p className="m-0 font-display text-[15px] font-extrabold text-wrappy-black">
+                {item.n}
+              </p>
+              <h3 className="m-0 font-display text-xl font-extrabold tracking-[-0.01em] text-wrappy-black md:text-[26px]">
+                {item.title}
+              </h3>
+              <p className="col-span-full m-0 text-[15px] leading-[26px] text-wrappy-black/[0.78] md:col-span-1 md:text-[15.5px]">
+                {item.copy}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
-  );
-}
-
-function WrapItem({ wrap, index }: { wrap: (typeof wraps)[0]; index: number }) {
-  const itemRef = useRef<HTMLHeadingElement>(null);
-
-  useEffect(() => {
-    if (!itemRef.current) return;
-
-    const item = itemRef.current;
-    const handleMouseEnter = () => {
-      gsap.to(item, {
-        scale: 1.1,
-        opacity: 1,
-        duration: 0.4,
-        ease: "power2.out",
-      });
-    };
-
-    const handleMouseLeave = () => {
-      gsap.to(item, {
-        scale: 1,
-        opacity: 0.7,
-        duration: 0.4,
-        ease: "power2.out",
-      });
-    };
-
-    item.addEventListener("mouseenter", handleMouseEnter);
-    item.addEventListener("mouseleave", handleMouseLeave);
-
-    return () => {
-      item.removeEventListener("mouseenter", handleMouseEnter);
-      item.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, []);
-
-  return (
-    <h3
-      ref={itemRef}
-      className="flex-shrink-0 text-2xl md:text-3xl lg:text-4xl font-light tracking-wide text-wrappy-cream/70 hover:text-wrappy-cream transform-gpu cursor-pointer transition-colors duration-300 whitespace-nowrap"
-      style={{ willChange: "transform", opacity: 0.7 }}
-    >
-      {wrap.name}
-    </h3>
   );
 }
