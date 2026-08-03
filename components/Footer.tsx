@@ -15,7 +15,11 @@ const COL_ONE = [
 ];
 
 const COL_TWO = [
-  { label: "ORDER ONLINE", href: "#order" },
+  {
+    label: "ORDER ONLINE",
+    href: "https://shop.wrapznfryz.com/",
+    external: true,
+  },
   {
     label: "INSTAGRAM",
     href: "https://instagram.com/heywrappy",

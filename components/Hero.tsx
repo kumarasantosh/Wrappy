@@ -376,7 +376,7 @@ export default function Hero() {
             className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:gap-4 lg:items-start lg:justify-start"
           >
             <a
-              href="#order"
+              href="https://shop.wrapznfryz.com/"
               onMouseMove={magnetize}
               onMouseLeave={demagnetize}
               className="group relative w-full overflow-hidden rounded-full bg-wrappy-black px-8 py-4 text-center text-sm font-bold tracking-wide text-wrappy-cream shadow-[0_14px_40px_-14px_rgba(14,14,14,0.7)] sm:w-auto md:px-10 md:text-base"

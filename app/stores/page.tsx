@@ -261,7 +261,7 @@ export default function StoresPage() {
             Get your wraps delivered hot & fresh, wherever you are.
           </p>
           <a
-            href=""
+            href="https://shop.wrapznfryz.com/"
             className="relative inline-block bg-wrappy-cream text-wrappy-black px-8 py-4 font-bold uppercase tracking-wider text-sm hover:bg-wrappy-red hover:text-wrappy-cream transition-colors"
           >
             Order Online

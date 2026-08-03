@@ -208,7 +208,7 @@ export default function SignatureWraps() {
               Snack like you mean it.
             </p>
             <a
-              href="#order"
+              href="https://shop.wrapznfryz.com/"
               className="inline-flex w-fit items-center rounded-full border-2 border-wrappy-cream px-5 py-2.5 font-display text-xs font-extrabold uppercase tracking-[0.08em] text-wrappy-cream transition-colors duration-300 hover:bg-wrappy-cream hover:text-wrappy-red"
             >
               Order online
