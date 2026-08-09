@@ -1,53 +1,68 @@
 import type { Metadata } from "next";
 import HomeClient from "./home-client";
 
+const DESCRIPTION =
+  "Wrapznfryz (Wrapz N Fryz) — fresh hand-rolled wraps, crispy loaded fries, thick shakes, mojitos and desserts in Kukatpally, Hyderabad. Order wraps and fries online or call 91775 99393.";
+
 export const metadata: Metadata = {
-  title: "Home - Fresh Wraps & Fries in Hyderabad | Wrapz N Fryz",
-  description:
-    "Fresh wraps, crispy fries, thick shakes & chill drinks in Hyderabad. Wrapz N Fryz - where street food meets bold flavour. Visit us at Shop 5A, Plot 192, Addagutta Society, Kukatpally, Hyderabad. Call 9177599393 to order now!",
+  // absolute title so the brand — and the one-word spelling people type —
+  // sits at the very front of the search result
+  title: {
+    absolute:
+      "Wrapznfryz | Wrapz N Fryz — Fresh Wraps & Crispy Fries in Hyderabad",
+  },
+  description: DESCRIPTION,
   keywords: [
-    "wrappy",
+    "wrapznfryz",
+    "wrapz n fryz",
+    "wrapz and fryz",
+    "wraps n fries",
+    "wrapznfryz hyderabad",
+    "wrapznfryz kukatpally",
+    "wrapznfryz menu",
     "wraps",
     "fresh wraps",
+    "wraps near me",
     "fries",
-    "hyderabad food",
-    "street food",
-    "kukatpally",
-    "food delivery",
-    "restaurant hyderabad",
-    "wraps hyderabad",
-    "fries hyderabad",
-    "wrapz n fryz restaurant",
+    "loaded fries",
+    "peri peri fries",
+    "fries near me",
+    "ufo wraps",
+    "chicken wraps",
+    "veg wraps",
+    "paneer wrap",
     "thickshakes",
     "mojitos",
     "desserts",
-    "ufo wraps",
-    "wrappy kukatpally",
+    "wraps hyderabad",
+    "fries hyderabad",
     "best wraps hyderabad",
+    "wraps kukatpally",
+    "street food hyderabad",
+    "food delivery hyderabad",
   ],
   openGraph: {
-    title: "Wrapz N Fryz - Fresh Wraps & Fries in Hyderabad",
-    description:
-      "Fresh wraps, crispy fries, thick shakes & chill drinks. Wrapz N Fryz - where street food meets bold flavour. Located in Kukatpally, Hyderabad.",
+    title:
+      "Wrapznfryz | Wrapz N Fryz — Fresh Wraps & Crispy Fries in Hyderabad",
+    description: DESCRIPTION,
     url: "https://wrapznfryz.com",
     type: "website",
     locale: "en_IN",
-    siteName: "Wrapz N Fryz",
+    siteName: "Wrapznfryz (Wrapz N Fryz)",
     images: [
       {
-        url: "/images/logoa.png",
+        url: "/images/logoa.jpg",
         width: 1200,
         height: 630,
-        alt: "Wrapz N Fryz - Fresh Wraps & Fries",
+        alt: "Wrapznfryz - Wrapz N Fryz - Fresh Wraps & Fries, Hyderabad",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "wrappy - Fresh Wraps & Fries in Hyderabad",
-    description:
-      "Fresh wraps, crispy fries, thick shakes & chill drinks. Wrapz N Fryz - where street food meets bold flavour.",
-    images: ["/images/logo.png"],
+    title: "Wrapznfryz | Wrapz N Fryz — Wraps & Fries in Hyderabad",
+    description: DESCRIPTION,
+    images: ["/images/logoa.jpg"],
     creator: "@heywrappy",
   },
   alternates: {

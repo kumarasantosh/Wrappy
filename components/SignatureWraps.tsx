@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -45,6 +45,24 @@ export default function SignatureWraps() {
   const gridRef = useRef<HTMLDivElement>(null);
   const menuLabelRef = useRef<HTMLSpanElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  /* ------------------------------------- mobile slider position (dots) */
+  const [slide, setSlide] = useState(0);
+
+  const handleSlide = useCallback((e: React.UIEvent<HTMLDivElement>) => {
+    const el = e.currentTarget;
+    const max = el.scrollWidth - el.clientWidth;
+    if (max <= 0) return;
+    const i = Math.round((el.scrollLeft / max) * 3);
+    setSlide(Math.min(3, Math.max(0, i)));
+  }, []);
+
+  const goToSlide = useCallback((i: number) => {
+    const el = gridRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    el.scrollTo({ left: (max / 3) * i, behavior: "smooth" });
+  }, []);
 
   useEffect(() => {
     const reduced = window.matchMedia(
@@ -166,12 +184,14 @@ export default function SignatureWraps() {
           </span>
         </h2>
 
+        {/* mobile: swipeable slider · sm+ : original grid (unchanged) */}
         <div
           ref={gridRef}
-          className="grid grid-cols-1 gap-[2px] bg-wrappy-black/10 sm:grid-cols-2 lg:grid-cols-4"
+          onScroll={handleSlide}
+          className="scrollbar-hide -mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth px-5 pb-1 [-webkit-overflow-scrolling:touch] sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-[2px] sm:overflow-visible sm:bg-wrappy-black/10 sm:px-0 sm:pb-0 lg:grid-cols-4"
         >
           {/* 01 — wrap photo */}
-          <figure className="group relative m-0 aspect-[3/4] overflow-hidden bg-wrappy-black">
+          <figure className="group relative m-0 aspect-[3/4] w-[82%] shrink-0 snap-center overflow-hidden rounded-2xl bg-wrappy-black sm:w-auto sm:shrink sm:rounded-none">
             <Image
               src="/Wraps/Smoky Tandoori Chicken_wrap.png"
               alt="Smoky Tandoori Chicken wrap"
@@ -182,7 +202,7 @@ export default function SignatureWraps() {
           </figure>
 
           {/* 02 — black statement card */}
-          <div className="flex aspect-[3/4] flex-col justify-between bg-wrappy-black p-6 md:p-7">
+          <div className="flex aspect-[3/4] w-[82%] shrink-0 snap-center flex-col justify-between rounded-2xl bg-wrappy-black p-6 sm:w-auto sm:shrink sm:rounded-none md:p-7">
             <p className="m-0 font-display text-[clamp(1.25rem,2.4vw,1.625rem)] font-extrabold leading-[1.15] tracking-[-0.01em] text-wrappy-red">
               Turn up the flavour, turn up the fun.
             </p>
@@ -192,7 +212,7 @@ export default function SignatureWraps() {
           </div>
 
           {/* 03 — fries photo */}
-          <figure className="group relative m-0 aspect-[3/4] overflow-hidden bg-wrappy-black">
+          <figure className="group relative m-0 aspect-[3/4] w-[82%] shrink-0 snap-center overflow-hidden rounded-2xl bg-wrappy-black sm:w-auto sm:shrink sm:rounded-none">
             <Image
               src="/Fries/Cheesy Loaded Fries.png"
               alt="Cheesy loaded fries"
@@ -203,7 +223,7 @@ export default function SignatureWraps() {
           </figure>
 
           {/* 04 — red CTA card */}
-          <div className="flex aspect-[3/4] flex-col justify-between bg-wrappy-red p-6 md:p-7">
+          <div className="flex aspect-[3/4] w-[82%] shrink-0 snap-center flex-col justify-between rounded-2xl bg-wrappy-red p-6 sm:w-auto sm:shrink sm:rounded-none md:p-7">
             <p className="m-0 font-display text-[clamp(1.25rem,2.4vw,1.625rem)] font-extrabold leading-[1.15] tracking-[-0.01em] text-wrappy-cream">
               Snack like you mean it.
             </p>
@@ -214,6 +234,23 @@ export default function SignatureWraps() {
               Order online
             </a>
           </div>
+        </div>
+
+        {/* dots — mobile only */}
+        <div className="mt-4 flex items-center justify-center gap-2 sm:hidden">
+          {[0, 1, 2, 3].map((i) => (
+            <button
+              key={i}
+              type="button"
+              aria-label={`Go to card ${i + 1}`}
+              onClick={() => goToSlide(i)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i === slide
+                  ? "w-6 bg-wrappy-red"
+                  : "w-1.5 bg-wrappy-black/20"
+              }`}
+            />
+          ))}
         </div>
       </div>
 

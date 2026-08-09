@@ -251,7 +251,7 @@ export default function Hero() {
         animation: gsap
           .timeline()
           .to(".hero-copy", { yPercent: -18, opacity: 0.15 }, 0)
-          .to(stageRef.current, { yPercent: 12, scale: 0.94 }, 0)
+          .to(stageRef.current, { yPercent: 12, scale: 0.98 }, 0)
           .to(scrollHintRef.current, { opacity: 0, duration: 0.2 }, 0),
       });
     }, sectionRef);
@@ -340,7 +340,7 @@ export default function Hero() {
       <div className="relative z-10 mx-auto grid min-h-[100svh] max-w-7xl grid-cols-1 items-center gap-10 px-5 pb-20 pt-28 sm:px-8 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:pb-24 lg:pt-32">
         {/* ------------------------------------------------------------ COPY */}
         <div className="hero-copy text-center lg:text-left">
-
+          {/* kicker — visible brand + category + city line (also feeds SEO) */}
           {/* headline */}
           <h1
             ref={headlineRef}
@@ -454,7 +454,7 @@ export default function Hero() {
         {/* -------------------------------------------------- PRODUCT STAGE */}
         <div
           ref={stageRef}
-          className="relative mx-auto mt-4 w-full max-w-[380px] opacity-0 sm:max-w-[420px] lg:mt-0 lg:max-w-none"
+          className="relative mx-auto mt-4 w-full max-w-[320px] opacity-0 sm:max-w-[360px] lg:mt-0 lg:max-w-[440px] xl:max-w-[480px]"
         >
           {/* dashed ring */}
           <div

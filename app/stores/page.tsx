@@ -14,7 +14,7 @@ const stores = [
     name: "JNTU",
     tag: "The Original",
     area: "Plot 192, Addagutta Society - Jal Vayu Vihar Road, near JNTU",
-    city: "Kukatpally, Hyderabad, Telangana – 500085",
+    city: "jntu, Hyderabad, Telangana – 500085",
     hours: "11:00 AM – 11:00 PM",
     phone: "+91 91775 99393",
     mapsQuery: "wrappy JNTU Hyderabad",

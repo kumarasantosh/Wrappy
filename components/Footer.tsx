@@ -171,12 +171,17 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* ----------------------------------------------- BRAND / SEO BLURB */}
+
       {/* ------------------------------------------------------------ LEGAL */}
       <div
         ref={legalRef}
         className="flex flex-col gap-1.5 border-t border-wrappy-cream/15 py-4 text-[11px] tracking-[0.06em] text-wrappy-cream/45 sm:flex-row sm:items-center sm:justify-between"
       >
-        <span>© {new Date().getFullYear()} Wrapz N Fryz. All rights reserved.</span>
+        <span>
+          © {new Date().getFullYear()} Wrapz N Fryz (Wrapznfryz). All rights
+          reserved.
+        </span>
         <span>STREET FOOD, MADE TO ORDER</span>
       </div>
 
